@@ -50,7 +50,8 @@ namespace GraphModel
 		/// <returns>Объект графа.</returns>
 		public static GraphModel Parse(string str) {
 			// разобьём на строки и уберём пустые, оставшиеся сложим в очередь
-			Queue<string> queue = new Queue<string>(str.Split('\n').Where(s => s != ""));
+			char[] separators = { '\r', '\n' };
+			Queue<string> queue = new Queue<string>(str.Split(separators).Where(s => s != ""));
 
 			try {
 				int n = int.Parse(queue.Dequeue());
@@ -78,7 +79,7 @@ namespace GraphModel
 					int[] numbers;
 					switch (line) {
 						case "Node colors:":
-							numbers = StringToIntArray(line);
+							numbers = StringToIntArray(queue.Dequeue());
 							nodeColors = numbers.Map(x => (NodeColor)x);
 							break;
 						case "Edge colors:":
@@ -88,7 +89,7 @@ namespace GraphModel
 							line = queue.Dequeue();
 							while (line != "-1") {
 								numbers = StringToIntArray(line);
-								edgeColors[numbers[0], numbers[1]] = (NodeColor)numbers[3];
+								edgeColors[numbers[0], numbers[1]] = (NodeColor)numbers[2];
 
 								line = queue.Dequeue();
 							}
