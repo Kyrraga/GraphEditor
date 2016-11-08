@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArrayExtension.cs" />
     <Compile Include="GraphModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
