@@ -1,6 +1,6 @@
 ﻿using QuickGraph;
 
-namespace GraphModel
+namespace GraphModelLibrary
 {
 	public class Vertex {
 		public string name;
