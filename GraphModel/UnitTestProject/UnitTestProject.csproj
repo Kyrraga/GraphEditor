@@ -57,7 +57,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GraphModel\GraphModel.csproj">
+    <ProjectReference Include="..\GraphModel\GraphModelLibrary.csproj">
       <Project>{7312221e-bec4-4a71-ad3b-8ae4aefe933e}</Project>
       <Name>GraphModel</Name>
     </ProjectReference>
