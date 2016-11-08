@@ -7,8 +7,8 @@
     <ProjectGuid>{7312221E-BEC4-4A71-AD3B-8AE4AEFE933E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GraphModel</RootNamespace>
-    <AssemblyName>GraphModel</AssemblyName>
+    <RootNamespace>GraphModelLibrary</RootNamespace>
+    <AssemblyName>GraphModelLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

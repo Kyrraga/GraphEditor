@@ -5,7 +5,7 @@ using System.Linq;
 using System.Collections.Generic;
 using ExtensionMethods;
 
-namespace GraphModel
+namespace GraphModelLibrary
 {
 	// UNUSED
 	public class Vertex {

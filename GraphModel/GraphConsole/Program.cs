@@ -1,4 +1,4 @@
-﻿using GraphModel;
+﻿using GraphModelLibrary;
 
 namespace GraphConsole {
 	class Program {
