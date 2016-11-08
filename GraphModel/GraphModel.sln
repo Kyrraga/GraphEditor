@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphModel", "GraphModel\GraphModel.csproj", "{7312221E-BEC4-4A71-AD3B-8AE4AEFE933E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphModelLibrary", "GraphModel\GraphModelLibrary.csproj", "{7312221E-BEC4-4A71-AD3B-8AE4AEFE933E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphConsole", "GraphConsole\GraphConsole.csproj", "{AFB86BC3-A8F9-42BD-A4AB-946831C12C6B}"
 EndProject
