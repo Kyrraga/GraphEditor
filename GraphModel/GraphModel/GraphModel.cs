@@ -7,12 +7,6 @@ using ExtensionMethods;
 
 namespace GraphModelLibrary
 {
-	// UNUSED
-	public class Vertex {
-		public string name;
-		public string color;
-	}
-
 	public enum NodeColor {
 		Magenta = 0,
 		Blue = 1,
