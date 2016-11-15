@@ -15,14 +15,14 @@ namespace WindowsFormsApplication {
 			InitializeComponent();
 		}
 
+		GraphModel graph = null;
+
 		private void loadGraphButton_Click(object sender, EventArgs e) {
 			OpenFileDialog openFileDialog = new OpenFileDialog();
 			DialogResult result = openFileDialog.ShowDialog();
 			if (result == DialogResult.OK) {
 				string path = openFileDialog.FileName;
-				throw new NotImplementedException();
-				// TODO
-				// Открывать файл с помощью GraphModel.Load()
+				graph = GraphModel.Load(path);
 			}
 		}
 	}

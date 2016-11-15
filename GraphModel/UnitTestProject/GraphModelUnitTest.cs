@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using GraphModel;
+using GraphModelLibrary;
 using System.IO;
 
 namespace UnitTestProject {
@@ -19,7 +19,7 @@ namespace UnitTestProject {
 			File.WriteAllText(path, contents);
 
 			try {
-				GraphModel.GraphModel model = GraphModel.GraphModel.Load(path);
+				GraphModel model = GraphModel.Load(path);
 			}
 			finally {
 				File.Delete(path);
@@ -42,7 +42,7 @@ Morbi elementum lorem et libero bibendum, ac egestas urna accumsan.";
 			File.WriteAllText(path, contents);
 
 			try {
-				GraphModel.GraphModel model = GraphModel.GraphModel.Load(path);
+				GraphModel model = GraphModel.Load(path);
 			}
 			finally {
 				File.Delete(path);
@@ -70,7 +70,7 @@ Morbi elementum lorem et libero bibendum, ac egestas urna accumsan.";
 			File.WriteAllText(path, contents);
 
 			try {
-				GraphModel.GraphModel model = GraphModel.GraphModel.Load(path);
+				GraphModel model = GraphModel.Load(path);
 			}
 			finally {
 				File.Delete(path);
