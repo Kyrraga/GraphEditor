@@ -26,7 +26,7 @@ namespace GraphModelLibrary
 		Brown = 15
 	}
 
-	public class GraphModel {
+	public partial class GraphModel {
 		/// <summary>
 		/// Загружает граф из файла.
 		/// </summary>
@@ -104,6 +104,8 @@ namespace GraphModelLibrary
 				throw new InvalidDataException("Неправильный формат входных данных", e);
 			}
 		}
+
+
 
 		private const NodeColor DEFAULT_NODE_COLOR = NodeColor.Magenta;
 		private const NodeColor DEFAULT_EDGE_COLOR = NodeColor.Magenta;
