@@ -25,5 +25,13 @@ namespace WindowsFormsApplication {
 				graph = GraphModel.Load(path);
 			}
 		}
+
+		private void drawButon_Click(object sender, EventArgs e) {
+			graphBox.Invalidate();
+		}
+
+		private void graphBox_Paint(object sender, PaintEventArgs e) {
+			throw new NotImplementedException("Отрисовка графа");
+		}
 	}
 }
