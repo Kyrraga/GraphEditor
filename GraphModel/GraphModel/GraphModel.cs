@@ -7,26 +7,7 @@ using ExtensionMethods;
 
 namespace GraphModelLibrary
 {
-	public enum NodeColor {
-		Magenta = 0,
-		Blue = 1,
-		Red = 2,
-		Green = 3,
-		Black = 4, 
-		White = 5,
-		Purple = 6,
-		Orange = 7,
-		Yellow = 8,
-		Pink = 9,
-		Turquoise = 10,
-		Grey = 11,
-		Teal = 12,
-		Darkblue = 13,
-		Violet = 14,
-		Brown = 15
-	}
-
-	public class GraphModel {
+	public partial class GraphModel {
 		/// <summary>
 		/// Загружает граф из файла.
 		/// </summary>
@@ -78,7 +59,6 @@ namespace GraphModelLibrary
 							break;
 						case "Edge colors:":
 							edgeColors = new NodeColor[n, n];
-							edgeColors.Fill(DEFAULT_EDGE_COLOR);
 
 							line = queue.Dequeue();
 							while (line != "-1") {
@@ -105,13 +85,9 @@ namespace GraphModelLibrary
 			}
 		}
 
-		private const NodeColor DEFAULT_NODE_COLOR = NodeColor.Magenta;
-		private const NodeColor DEFAULT_EDGE_COLOR = NodeColor.Magenta;
 
-		private readonly int _nodeNumber;
-		private readonly int[,] _adjacencyMatrix = null;
-		private readonly NodeColor[] _nodeColors = null;
-		private readonly NodeColor[,] _edgeColors = null;
+
+		private readonly IGraph _graph;
 		private string _text;
 
 		/// <summary>
@@ -130,20 +106,35 @@ namespace GraphModelLibrary
 					NodeColor[,] edgeColors = null,
 					string text = null) {
 
-			_nodeNumber = n;
-
-			_adjacencyMatrix = (int[,])matrix.Clone();
-
-			_nodeColors = (NodeColor[])nodeColors?.Clone();
-			if (_nodeColors != null) {
-				_nodeColors = new NodeColor[n];
-				_nodeColors.Fill(DEFAULT_NODE_COLOR);
+			// create graph and nodes
+			_graph = new Graph();
+			INode[] nodes = new Node[n];
+			for (int i = 0; i < nodes.Length; ++i) {
+				nodes[i] = _graph.AddNode();
 			}
-
-			_edgeColors = (NodeColor[,])edgeColors?.Clone();
-			if (_edgeColors != null) {
-				_edgeColors = new NodeColor[n, n];
-				_edgeColors.Fill(DEFAULT_EDGE_COLOR);
+			
+			// create edges
+			for (int i = 0; i < matrix.GetLength(0); ++i) {
+				for (int j = 0; j < matrix.GetLength(1); ++i) {
+					int value = matrix[i, j];
+					if (value != 0) {
+						Edge edge = (Edge)_graph.AddEdge(nodes[i], nodes[j]);
+						edge.Value = value.ToString();
+					}
+				}
+			}
+			
+			// add colors to nodes
+			for (int i = 0; i < nodeColors.Length; ++i) {
+				nodes[i].Color = nodeColors[i];
+			}
+			
+			// add colors to edges
+			for (int i = 0; i < nodes.Length; ++i) {
+				for (int j = 0; j < nodes.Length; ++j) {
+					IEdge edge = nodes[i].GetOutgoingEdges().First((e) => (e.NodeTo == nodes[j]));
+					edge.Color = edgeColors[i, j];
+				}
 			}
 
 			_text = text ?? "";
@@ -156,6 +147,6 @@ namespace GraphModelLibrary
 		/// <returns>Массив чисел.</returns>
 		private static int[] StringToIntArray(string str) {
 			return str.Split().Map(x => int.Parse(x));
-  }
+		}
 	}
 }
