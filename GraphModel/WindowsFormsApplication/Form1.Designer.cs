@@ -24,7 +24,7 @@
 		/// </summary>
 		private void InitializeComponent() {
 			this.loadGraphButton = new System.Windows.Forms.Button();
-			this.drawButon = new System.Windows.Forms.Button();
+			this.drawButton = new System.Windows.Forms.Button();
 			this.graphBox = new System.Windows.Forms.GroupBox();
 			this.SuspendLayout();
 			// 
@@ -38,15 +38,15 @@
 			this.loadGraphButton.UseVisualStyleBackColor = true;
 			this.loadGraphButton.Click += new System.EventHandler(this.loadGraphButton_Click);
 			// 
-			// drawButon
+			// drawButton
 			// 
-			this.drawButon.Location = new System.Drawing.Point(333, 25);
-			this.drawButon.Name = "drawButon";
-			this.drawButon.Size = new System.Drawing.Size(111, 23);
-			this.drawButon.TabIndex = 1;
-			this.drawButon.Text = "Нарисовать граф";
-			this.drawButon.UseVisualStyleBackColor = true;
-			this.drawButon.Click += new System.EventHandler(this.drawButon_Click);
+			this.drawButton.Location = new System.Drawing.Point(333, 25);
+			this.drawButton.Name = "drawButton";
+			this.drawButton.Size = new System.Drawing.Size(111, 23);
+			this.drawButton.TabIndex = 1;
+			this.drawButton.Text = "Нарисовать граф";
+			this.drawButton.UseVisualStyleBackColor = true;
+			this.drawButton.Click += new System.EventHandler(this.drawButton_Click);
 			// 
 			// graphBox
 			// 
@@ -63,7 +63,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(887, 474);
 			this.Controls.Add(this.graphBox);
-			this.Controls.Add(this.drawButon);
+			this.Controls.Add(this.drawButton);
 			this.Controls.Add(this.loadGraphButton);
 			this.Name = "Form1";
 			this.Text = "Form1";
@@ -74,7 +74,7 @@
 		#endregion
 
 		private System.Windows.Forms.Button loadGraphButton;
-		private System.Windows.Forms.Button drawButon;
+		private System.Windows.Forms.Button drawButton;
 		private System.Windows.Forms.GroupBox graphBox;
 	}
 }
