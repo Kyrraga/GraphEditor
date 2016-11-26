@@ -9,8 +9,11 @@ using GraphModelLibrary;
 namespace WindowsFormsApplication {
 	partial class Form1 {
 		private void graphBox_Paint(object sender, PaintEventArgs e) {
+			Graphics g = e.Graphics;
+			g.FillRegion(Brushes.Beige, g.Clip);
 			if (graphModel != null) {
-				drawNodes(e.Graphics);
+				drawEdges(g);
+				drawNodes(g);
 			}
 		}
 
@@ -26,6 +29,32 @@ namespace WindowsFormsApplication {
 			for (int i = 0; i < nodes.Length; ++i) {
 				PointF point = indexToPoint(middle, nodes.Length, i, 50);
 				drawCircle(g, point, nodes[i].Color);
+			}
+		}
+
+		private void drawEdges(Graphics g) {
+			if (graphModel == null) {
+				throw new InvalidOperationException("Can't draw edges without a graph");
+			}
+
+			RectangleF bounds = g.VisibleClipBounds;
+			PointF middle = new PointF(bounds.X + bounds.Width / 2, bounds.Y + bounds.Height / 2);
+
+			INode[] nodes = graphModel.Graph.Nodes.ToArray();
+			int radius = 50;
+			for (int i = 0; i < nodes.Length; ++i) {
+				PointF point1 = indexToPoint(middle, nodes.Length, i, radius);
+				foreach (IEdge edge in nodes[i].GetOutgoingEdges()) {
+					INode node2 = edge.NodeTo;
+					int j = 0;
+					for (j = 0; j < nodes.Length; ++j) {
+						if (nodes[j] == node2) {
+							break;
+						}
+					}
+					PointF point2 = indexToPoint(middle, nodes.Length, j, radius);
+					drawArrow(g, point1, point2, edge.Color);
+				}
 			}
 		}
 
@@ -49,6 +78,11 @@ namespace WindowsFormsApplication {
 			int radius = 10;
 			RectangleF rect = new RectangleF(point.X - radius, point.Y - radius, radius * 2, radius * 2);
 			g.FillEllipse(brush, rect);
+		}
+
+		private void drawArrow(Graphics g, PointF point1, PointF point2, NodeColor color) {
+			Pen pen = new Pen(convertColor(color));
+			g.DrawLine(pen, point1, point2);
 		}
 
 		private Color convertColor(NodeColor color) {
