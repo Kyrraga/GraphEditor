@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 
 namespace GraphModelLibrary {
-	interface IGraph {
+	public interface IGraph {
 		ReadOnlyCollection<INode> Nodes { get; }
 		IEnumerable<IEdge> Edges { get; }
 		IEnumerable<IEdge> GetIncomingEdges(INode node);
@@ -19,7 +19,7 @@ namespace GraphModelLibrary {
 		void Remove(IEdge edge);
 	}
 
-	class Graph : IGraph {
+	public class Graph : IGraph {
 		public IEnumerable<IEdge> Edges {
 			get {
 				foreach (var dict in _outgoingEdges.Values) {

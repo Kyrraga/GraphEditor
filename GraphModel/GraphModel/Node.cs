@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 
 namespace GraphModelLibrary {
-	interface INode {
+	public interface INode {
 		NodeColor Color { get; set; }
 		IEnumerable<IEdge> GetIncomingEdges();
 		IEnumerable<IEdge> GetOutgoingEdges();
@@ -14,7 +14,7 @@ namespace GraphModelLibrary {
 		void Delete();
 	}
 
-	class Node : INode {
+	public class Node : INode {
 		public IGraph Graph {
 			get {
 				return _graph;
