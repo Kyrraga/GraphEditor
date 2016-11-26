@@ -7,29 +7,21 @@ namespace UnitTestProject {
 	[TestClass]
 	public class GraphModelUnitTest {
 		[TestMethod]
-		public void Loading1() {
-			string path = "test_file.txt";
-			string contents = 
+		public void Parsing1() {
+			string text = 
 @"5
 0 1 0 1 1
 1 0 0 1 1
 1 0 0 0 1
 1 0 1 0 1
 1 1 1 1 0";
-			File.WriteAllText(path, contents);
 
-			try {
-				GraphModel model = GraphModel.Load(path);
-			}
-			finally {
-				File.Delete(path);
-			}
+			GraphModel model = GraphModel.Parse(text);
 		}
 
 		[TestMethod]
-		public void Loading2() {
-			string path = "test_file.txt";
-			string contents =
+		public void Parsing2() {
+			string text =
 @"3
 0 2 3
 -1 0 0
@@ -39,20 +31,13 @@ Node colors:
 Text:
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
 Morbi elementum lorem et libero bibendum, ac egestas urna accumsan.";
-			File.WriteAllText(path, contents);
 
-			try {
-				GraphModel model = GraphModel.Load(path);
-			}
-			finally {
-				File.Delete(path);
-			}
+			GraphModel model = GraphModel.Parse(text);
 		}
 
 		[TestMethod]
-		public void Loading3() {
-			string path = "test_file.txt";
-			string contents =
+		public void Parsing3() {
+			string text =
 @"4
 0 2 3 100
 -1 0 0 -1
@@ -67,14 +52,26 @@ Node colors:
 Text:
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
 Morbi elementum lorem et libero bibendum, ac egestas urna accumsan.";
-			File.WriteAllText(path, contents);
 
-			try {
-				GraphModel model = GraphModel.Load(path);
-			}
-			finally {
-				File.Delete(path);
-			}
+			GraphModel model = GraphModel.Parse(text);
+		}
+
+		[TestMethod]
+		public void Loading1() {
+			string path = @"C:\Users\Ruslan\Desktop\MAI\Диплом\GraphEditor\Examples\Graph files\exampleA1-1.txt";
+			GraphModel model = GraphModel.Load(path);
+		}
+
+		[TestMethod]
+		public void Loading2() {
+			string path = @"C:\Users\Ruslan\Desktop\MAI\Диплом\GraphEditor\Examples\Graph files\exampleA1-2.txt";
+			GraphModel model = GraphModel.Load(path);
+		}
+
+		[TestMethod]
+		public void Loading3() {
+			string path = @"C:\Users\Ruslan\Desktop\MAI\Диплом\GraphEditor\Examples\Graph files\exampleA1-3.txt";
+			GraphModel model = GraphModel.Load(path);
 		}
 	}
 }

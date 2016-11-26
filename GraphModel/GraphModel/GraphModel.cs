@@ -85,6 +85,19 @@ namespace GraphModelLibrary
 			}
 		}
 
+		public IGraph Graph {
+			get {
+				return _graph;
+			}
+		}
+		public string Text {
+			get {
+				return _text;
+			}
+			set {
+				_text = value;
+			}
+		}
 
 
 		private readonly IGraph _graph;
@@ -115,7 +128,7 @@ namespace GraphModelLibrary
 			
 			// create edges
 			for (int i = 0; i < matrix.GetLength(0); ++i) {
-				for (int j = 0; j < matrix.GetLength(1); ++i) {
+				for (int j = 0; j < matrix.GetLength(1); ++j) {
 					int value = matrix[i, j];
 					if (value != 0) {
 						Edge edge = (Edge)_graph.AddEdge(nodes[i], nodes[j]);
@@ -123,17 +136,23 @@ namespace GraphModelLibrary
 					}
 				}
 			}
-			
+
 			// add colors to nodes
-			for (int i = 0; i < nodeColors.Length; ++i) {
-				nodes[i].Color = nodeColors[i];
+			if (nodeColors != null) {
+				for (int i = 0; i < nodeColors.Length; ++i) {
+					nodes[i].Color = nodeColors[i];
+				}
 			}
-			
+
 			// add colors to edges
-			for (int i = 0; i < nodes.Length; ++i) {
-				for (int j = 0; j < nodes.Length; ++j) {
-					IEdge edge = nodes[i].GetOutgoingEdges().First((e) => (e.NodeTo == nodes[j]));
-					edge.Color = edgeColors[i, j];
+			if (edgeColors != null) {
+				for (int i = 0; i < nodes.Length; ++i) {
+					for (int j = 0; j < nodes.Length; ++j) {
+						IEdge edge = nodes[i].GetOutgoingEdges().FirstOrDefault((e) => (e.NodeTo == nodes[j]));
+						if (edge != null) {
+							edge.Color = edgeColors[i, j];
+						}
+					}
 				}
 			}
 

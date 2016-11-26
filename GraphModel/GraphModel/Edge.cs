@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 
 namespace GraphModelLibrary {
-	interface IEdge {
+	public interface IEdge {
 		NodeColor Color { get; set; }
 		INode NodeFrom { get; }
 		INode NodeTo { get; }
 		void Delete();
 	}
 
-	class Edge : IEdge {
+	public class Edge : IEdge {
 		public IGraph Graph {
 			get {
 				return _graph;
