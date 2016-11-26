@@ -23,28 +23,48 @@ namespace WindowsFormsApplication {
 			if (result == DialogResult.OK) {
 				string path = openFileDialog.FileName;
 				graphModel = GraphModel.Load(path);
+				graphBox.Invalidate();
 			}
 		}
 
-		private void drawButon_Click(object sender, EventArgs e) {
+		private void drawButton_Click(object sender, EventArgs e) {
 			graphBox.Invalidate();
 		}
 
 		private void graphBox_Paint(object sender, PaintEventArgs e) {
 			if (graphModel != null) {
-				RectangleF bounds = e.Graphics.VisibleClipBounds;
-				PointF middle = new PointF(bounds.X + bounds.Width / 2, bounds.Y + bounds.Height / 2);
-				int radius = 50;
-
-				INode[] nodes = graphModel.Graph.Nodes.ToArray();
-				for (int i = 0; i < nodes.Length; ++i) {
-					double angle = Math.PI * 2 * i / nodes.Length;
-					float x = middle.X + (float)Math.Cos(angle) * radius;
-					float y = middle.Y + (float)Math.Sin(angle) * radius;
-
-					drawCircle(e.Graphics, new PointF(x, y), nodes[i].Color);
-				}
+				drawNodes(e.Graphics);
 			}
+		}
+
+		private void drawNodes(Graphics g) {
+			if (graphModel == null) {
+				throw new InvalidOperationException("Can't draw nodes without a graph");
+			}
+
+			RectangleF bounds = g.VisibleClipBounds;
+			PointF middle = new PointF(bounds.X + bounds.Width / 2, bounds.Y + bounds.Height / 2);
+			
+			INode[] nodes = graphModel.Graph.Nodes.ToArray();
+			for (int i = 0; i < nodes.Length; ++i) {
+				PointF point = indexToPoint(middle, nodes.Length, i, 50);
+                drawCircle(g, point, nodes[i].Color);
+			}
+		}
+
+		/// <summary>
+		/// Вычисляет координаты точки на окружности.
+		/// </summary>
+		/// <param name="middle">Центр окружности.</param>
+		/// <param name="n">Количество точек.</param>
+		/// <param name="i">Номер точки.</param>
+		/// <param name="radius">Радиус окружности.</param>
+		/// <returns></returns>
+		private PointF indexToPoint(PointF middle, int n, int i, int radius) {
+			double angle = Math.PI * 2 * i / n;
+			float x = middle.X + (float)Math.Cos(angle) * radius;
+			float y = middle.Y + (float)Math.Sin(angle) * radius;
+			return new PointF(x, y);
 		}
 
 		private void drawCircle(Graphics g, PointF point, NodeColor color) {
