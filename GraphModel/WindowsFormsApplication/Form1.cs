@@ -13,9 +13,12 @@ namespace WindowsFormsApplication {
 	public partial class Form1 : Form {
 		public Form1() {
 			InitializeComponent();
+			graphBox.MouseDown += graphBox_MouseDown;
+			editTool = new EditTool(graphBox);
 		}
 
-		GraphModel graphModel = null;
+		private GraphModel graphModel = null;
+		private EditTool editTool = null;
 
 		private void loadGraphButton_Click(object sender, EventArgs e) {
 			OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -31,6 +34,16 @@ namespace WindowsFormsApplication {
 			graphBox.Invalidate();
 		}
 
-		
+		private void loadExampleButton_Click(object sender, EventArgs e) {
+			string path = @"C:\Users\Ruslan\Documents\MAI\Диплом\GraphEditor\Examples\Graph files\exampleA1-4.txt";
+			graphModel = GraphModel.Load(path);
+			graphBox.Invalidate();
+		}
+
+		private void graphBox_MouseDown(object sender, MouseEventArgs e) {
+			if (e.Button == MouseButtons.Left) {
+				editTool.LeftMouseButtonDown(e.Location);
+			}
+		}
 	}
 }
