@@ -11,21 +11,21 @@ namespace WindowsFormsApplication {
 		private void graphBox_Paint(object sender, PaintEventArgs e) {
 			Graphics g = e.Graphics;
 			g.FillRegion(Brushes.Beige, g.Clip);
-			if (graphModel != null) {
+			if (_graphModel != null) {
 				drawEdges(g);
 				drawNodes(g);
 			}
 		}
 
 		private void drawNodes(Graphics g) {
-			if (graphModel == null) {
+			if (_graphModel == null) {
 				throw new InvalidOperationException("Can't draw nodes without a graph");
 			}
 
 			RectangleF bounds = g.VisibleClipBounds;
 			PointF middle = new PointF(bounds.X + bounds.Width / 2, bounds.Y + bounds.Height / 2);
 
-			INode[] nodes = graphModel.Graph.Nodes.ToArray();
+			INode[] nodes = _graphModel.Graph.Nodes.ToArray();
 			for (int i = 0; i < nodes.Length; ++i) {
 				PointF point = indexToPoint(middle, nodes.Length, i, 50);
 				drawCircle(g, point, nodes[i].Color);
@@ -33,14 +33,14 @@ namespace WindowsFormsApplication {
 		}
 
 		private void drawEdges(Graphics g) {
-			if (graphModel == null) {
+			if (_graphModel == null) {
 				throw new InvalidOperationException("Can't draw edges without a graph");
 			}
 
 			RectangleF bounds = g.VisibleClipBounds;
 			PointF middle = new PointF(bounds.X + bounds.Width / 2, bounds.Y + bounds.Height / 2);
 
-			INode[] nodes = graphModel.Graph.Nodes.ToArray();
+			INode[] nodes = _graphModel.Graph.Nodes.ToArray();
 			int radius = 50;
 			for (int i = 0; i < nodes.Length; ++i) {
 				PointF point1 = indexToPoint(middle, nodes.Length, i, radius);
