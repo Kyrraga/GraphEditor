@@ -9,19 +9,19 @@ namespace UILogicLibrary
 {
 	public class EditTool {
 
-		public EditTool() { }
+		public EditTool(DrawingContext context) {
+			this._drawingContext = context;
+			Reset();
+		}
 
-		public Action<Point, Point> DrawLine;
-		public Action<Rectangle> DrawRectangle;
+		public void Reset() {
+			this._state = new DefaultState();
+		}
 
 		public EditToolState State {
 			get {
 				return _state;
 			}
-		}
-
-		public void Reset() {
-			throw new NotImplementedException();
 		}
 
 		public void LeftMouseButtonDown(Point location) {
@@ -39,7 +39,12 @@ namespace UILogicLibrary
 		public void MouseMoved(Point location) {
 			_state = _state.MouseMoved(location);
 		}
+		public void Draw(Graphics g) {
+			_drawingContext.SetGraphics(g);
+			_state.Draw(_drawingContext);
+		}
 
 		private EditToolState _state = new EmptyState();
+		private DrawingContext _drawingContext = null;
 	}
 }

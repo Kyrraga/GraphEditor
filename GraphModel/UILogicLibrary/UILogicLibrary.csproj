@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DefaultState.cs" />
+    <Compile Include="DrawingContext.cs" />
     <Compile Include="EdgeView.cs" />
     <Compile Include="EditTool.cs" />
     <Compile Include="EditToolState.cs" />

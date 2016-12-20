@@ -12,20 +12,9 @@ namespace UILogicLibrary {
 		public virtual EditToolState RightMouseButtonDown(Point location) { return this; }
 		public virtual EditToolState RightMouseButtonUp(Point location) { return this; }
 		public virtual EditToolState MouseMoved(Point location) { return this; }
-		public virtual void Draw() { }
+		public virtual void Draw(DrawingContext context) { }
 	}
 
 
-	public class EmptyState : EditToolState {
-		public EmptyState() { }
-	}
-
-
-	public class DefaultState : EditToolState {
-		public DefaultState() { }
-
-		public override EditToolState LeftMouseButtonDown(Point location) {
-			return new SelectionState(location);
-		}
-	}
+	public class EmptyState : EditToolState { }
 }
