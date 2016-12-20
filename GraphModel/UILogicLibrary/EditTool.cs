@@ -11,16 +11,29 @@ namespace UILogicLibrary
 
 		public EditTool(DrawingContext context) {
 			this._drawingContext = context;
-			Reset();
 		}
 
-		public void Reset() {
-			this._state = new DefaultState();
+		public GraphView GraphView {
+			get {
+				return _graph;
+			}
+			set {
+				_graph = value;
+				if (_graph == null) {
+					State = new EmptyState();
+				}
+				else {
+					State = new DefaultState();
+				}
+			}
 		}
 
 		public EditToolState State {
 			get {
 				return _state;
+			}
+			private set {
+				_state = value;
 			}
 		}
 
@@ -46,5 +59,6 @@ namespace UILogicLibrary
 
 		private EditToolState _state = new EmptyState();
 		private DrawingContext _drawingContext = null;
+		private GraphView _graph = null;
 	}
 }

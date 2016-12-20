@@ -6,6 +6,7 @@ using System.Text;
 
 namespace GraphModelLibrary {
 	public interface INode {
+		IGraph Graph { get; }
 		NodeColor Color { get; set; }
 		IEnumerable<IEdge> GetIncomingEdges();
 		IEnumerable<IEdge> GetOutgoingEdges();
@@ -20,14 +21,17 @@ namespace GraphModelLibrary {
 				return _graph;
 			} 
 		}
-		public NodeColor Color { get; set; }
+		public NodeColor Color {
+			get {
+				return _color;
+			}
+			set {
+				_color = value;
+			}
+		}
 
 		public Node(IGraph graph) {
 			this._graph = graph;
-		}
-
-		public static INode Create(IGraph graph) {
-			return graph.AddNode();
 		}
 
 		public IEnumerable<IEdge> GetIncomingEdges() {
@@ -47,5 +51,6 @@ namespace GraphModelLibrary {
 		}
 
 		private readonly IGraph _graph;
+		private NodeColor _color;
 	}
 }
