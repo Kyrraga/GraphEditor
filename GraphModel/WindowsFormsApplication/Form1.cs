@@ -16,7 +16,7 @@ namespace WindowsFormsApplication {
 			InitializeComponent();
 		}
 
-		public GraphModel GraphModel {
+		public GraphModel2 GraphModel {
 			get {
 				return _graphModel;
 			}
@@ -37,7 +37,7 @@ namespace WindowsFormsApplication {
 		}
 
 
-		private GraphModel _graphModel = null;
+		private GraphModel2 _graphModel = null;
 		private GraphView _graphView = null;
 		private EditTool _editTool = null;
 
@@ -55,7 +55,7 @@ namespace WindowsFormsApplication {
 			DialogResult result = openFileDialog.ShowDialog();
 			if (result == DialogResult.OK) {
 				string path = openFileDialog.FileName;
-				GraphModel = GraphModel.Load(path);
+				GraphModel = GraphModel2.Load(path);
 			}
 		}
 		private void drawButton_Click(object sender, EventArgs e) {
@@ -63,7 +63,7 @@ namespace WindowsFormsApplication {
 		}
 		private void loadExampleButton_Click(object sender, EventArgs e) {
 			string path = @"C:\Users\Ruslan\Documents\MAI\Диплом\GraphEditor\Examples\Graph files\exampleA1-4.txt";
-			GraphModel = GraphModel.Load(path);
+			GraphModel = GraphModel2.Load(path);
 		}
 		
 		// graphBox events

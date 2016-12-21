@@ -48,6 +48,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,11 +57,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayExtension.cs" />
+    <Compile Include="Edge2Model.cs" />
     <Compile Include="Colors.cs" />
     <Compile Include="Edge.cs" />
+    <Compile Include="Edge2.cs" />
     <Compile Include="Graph.cs" />
+    <Compile Include="Graph2.cs" />
     <Compile Include="GraphModel.cs" />
+    <Compile Include="GraphModel2.cs" />
+    <Compile Include="IEdge2.cs" />
+    <Compile Include="INode2.cs" />
     <Compile Include="Node.cs" />
+    <Compile Include="Node2.cs" />
+    <Compile Include="Node2Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
