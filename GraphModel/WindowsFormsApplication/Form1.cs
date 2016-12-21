@@ -81,7 +81,9 @@ namespace WindowsFormsApplication {
 			graphBox.Invalidate();
 		}
 		private void graphBox_Draw(object sender, PaintEventArgs e) {
-			_editTool.Draw(e.Graphics);
+			Graphics g = e.Graphics;
+			drawGraph(g);
+			_editTool.Draw(g);
 			debugLabel.Text = _editTool.State.ToString();
 		}
 	}

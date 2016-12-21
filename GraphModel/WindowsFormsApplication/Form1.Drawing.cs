@@ -8,8 +8,7 @@ using GraphModelLibrary;
 
 namespace WindowsFormsApplication {
 	partial class Form1 {
-		private void graphBox_Paint(object sender, PaintEventArgs e) {
-			Graphics g = e.Graphics;
+		private void drawGraph(Graphics g) {
 			g.FillRegion(Brushes.Beige, g.Clip);
 			if (_graphModel != null) {
 				drawEdges(g);

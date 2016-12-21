@@ -57,7 +57,6 @@
 			this.graphBox.Size = new System.Drawing.Size(804, 336);
 			this.graphBox.TabIndex = 2;
 			this.graphBox.TabStop = false;
-			this.graphBox.Paint += new System.Windows.Forms.PaintEventHandler(this.graphBox_Paint);
 			// 
 			// loadExampleButton
 			// 
