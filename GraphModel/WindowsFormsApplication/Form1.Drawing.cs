@@ -44,8 +44,8 @@ namespace WindowsFormsApplication {
 			int radius = 50;
 			for (int i = 0; i < nodes.Length; ++i) {
 				PointF point1 = indexToPoint(middle, nodes.Length, i, radius);
-				foreach (IEdge edge in nodes[i].GetOutgoingEdges()) {
-					INode node2 = edge.NodeTo;
+				foreach (Edge2Model edge in nodes[i].GetOutgoingEdges()) {
+					INode2 node2 = edge.To;
 					int j = 0;
 					for (j = 0; j < nodes.Length; ++j) {
 						if (nodes[j] == node2) {
