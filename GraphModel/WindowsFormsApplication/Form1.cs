@@ -62,7 +62,7 @@ namespace WindowsFormsApplication {
 			graphBox.Invalidate();
 		}
 		private void loadExampleButton_Click(object sender, EventArgs e) {
-			string path = @"C:\Users\Ruslan\Documents\MAI\Диплом\GraphEditor\Examples\Graph files\exampleA1-4.txt";
+			string path = @"..\..\..\..\Examples\Graph files\exampleA1-4.txt";
 			GraphModel = GraphModel.Load(path);
 		}
 		
