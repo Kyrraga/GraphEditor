@@ -57,15 +57,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayExtension.cs" />
-    <Compile Include="Edge2Model.cs" />
+    <Compile Include="EdgeModel.cs" />
     <Compile Include="Colors.cs" />
-    <Compile Include="Edge2.cs" />
-    <Compile Include="Graph2.cs" />
-    <Compile Include="GraphModel2.cs" />
-    <Compile Include="IEdge2.cs" />
-    <Compile Include="INode2.cs" />
-    <Compile Include="Node2.cs" />
-    <Compile Include="Node2Model.cs" />
+    <Compile Include="Edge.cs" />
+    <Compile Include="Graph.cs" />
+    <Compile Include="GraphModel.cs" />
+    <Compile Include="IEdge.cs" />
+    <Compile Include="INode.cs" />
+    <Compile Include="Node.cs" />
+    <Compile Include="NodeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

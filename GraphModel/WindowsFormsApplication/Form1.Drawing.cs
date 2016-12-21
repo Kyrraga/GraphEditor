@@ -40,12 +40,12 @@ namespace WindowsFormsApplication {
 			RectangleF bounds = g.VisibleClipBounds;
 			PointF middle = new PointF(bounds.X + bounds.Width / 2, bounds.Y + bounds.Height / 2);
 
-			NodeModel[] nodes = _graphModel.Graph.ToArray() as NodeModel[];
+			Node[] nodes = _graphModel.Graph.ToArray();
 			int radius = 50;
 			for (int i = 0; i < nodes.Length; ++i) {
 				PointF point1 = indexToPoint(middle, nodes.Length, i, radius);
 				foreach (EdgeModel edge in nodes[i].GetOutgoingEdges()) {
-					INode node2 = edge.To;
+					Node node2 = edge.To as Node;
 					int j = 0;
 					for (j = 0; j < nodes.Length; ++j) {
 						if (nodes[j] == node2) {
