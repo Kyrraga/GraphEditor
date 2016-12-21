@@ -7,16 +7,16 @@ using ExtensionMethods;
 
 
 namespace GraphModelLibrary {
-	public class GraphModel2 {
+	public class GraphModel {
 
 		/// <summary>
 		/// Загружает граф из файла.
 		/// </summary>
 		/// <param name="path">Путь к файлу в файловой системе.</param>
 		/// <returns>Объект графа.</returns>
-		public static GraphModel2 Load(string path) {
+		public static GraphModel Load(string path) {
 			string text = File.ReadAllText(path);
-			return GraphModel2.Parse(text);
+			return GraphModel.ParseA1(text);
 		}
 
 		/// <summary>
@@ -24,7 +24,7 @@ namespace GraphModelLibrary {
 		/// </summary>
 		/// <param name="str">Строка с описанием графа.</param>
 		/// <returns>Объект графа.</returns>
-		public static GraphModel2 Parse(string str) {
+		public static GraphModel ParseA1(string str) {
 			// разобьём на строки и уберём пустые, оставшиеся сложим в очередь
 			char[] separators = { '\r', '\n' };
 			Queue<string> queue = new Queue<string>(str.Split(separators).Where(s => s != ""));
@@ -43,7 +43,7 @@ namespace GraphModelLibrary {
 				}
 
 				if (queue.Count == 0) {
-					return new GraphModel2(n, adjacencyMatrix);
+					return new GraphModel(n, adjacencyMatrix);
 				}
 
 				NodeColor[] nodeColors = null;
@@ -79,14 +79,14 @@ namespace GraphModelLibrary {
 					}
 				}
 
-				return new GraphModel2(n, adjacencyMatrix, nodeColors, edgeColors, text);
+				return new GraphModel(n, adjacencyMatrix, nodeColors, edgeColors, text);
 			}
 			catch (Exception e) {
 				throw new InvalidDataException("Неправильный формат входных данных", e);
 			}
 		}
 
-		public Graph2 Graph {
+		public Graph Graph {
 			get {
 				return _graph;
 			}
@@ -101,7 +101,7 @@ namespace GraphModelLibrary {
 		}
 
 
-		readonly Graph2 _graph;
+		readonly Graph _graph;
 		string _text;
 
 		/// <summary>
@@ -113,7 +113,7 @@ namespace GraphModelLibrary {
 		/// <param name="nodeColors">Цвета вершин.</param>
 		/// <param name="edgeColors">Цвета рёбер.</param>
 		/// <param name="text">Свободный текст.</param>
-		private GraphModel2(
+		private GraphModel(
 					int n,
 					int[,] matrix,
 					NodeColor[] nodeColors = null,
@@ -121,10 +121,10 @@ namespace GraphModelLibrary {
 					string text = null) {
 
 			// create graph and nodes
-			_graph = new Graph2();
-			Node2Model[] nodes = new Node2Model[n];
+			_graph = new Graph();
+			NodeModel[] nodes = new NodeModel[n];
 			for (int i = 0; i < nodes.Length; ++i) {
-				nodes[i] = new Node2Model();
+				nodes[i] = new NodeModel();
 				_graph.Add(nodes[i]);
 			}
 
@@ -134,7 +134,7 @@ namespace GraphModelLibrary {
 					int value = matrix[i, j];
 					if (value != 0) {
 						//Edge2 edge = _graph.AddEdge(nodes[i], nodes[j]) as Edge2;
-						Edge2Model edge = new Edge2Model(nodes[i], nodes[j]);
+						EdgeModel edge = new EdgeModel(nodes[i], nodes[j]);
 						edge.Value = value.ToString();
 					}
 				}
@@ -151,10 +151,10 @@ namespace GraphModelLibrary {
 			if (edgeColors != null) {
 				for (int i = 0; i < nodes.Length; ++i) {
 					for (int j = 0; j < nodes.Length; ++j) {
-						Edge2Model edge = nodes[i]
+						EdgeModel edge = nodes[i]
 							.GetOutgoingEdges()
 							.FirstOrDefault((e) => (e.To == nodes[j]))
-							as Edge2Model;
+							as EdgeModel;
 						if (edge != null) {
 							edge.Color = edgeColors[i, j];
 						}

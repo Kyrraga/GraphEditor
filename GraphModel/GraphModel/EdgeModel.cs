@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 
 namespace GraphModelLibrary {
-	public class Edge2Model : Edge2 {
-		public Edge2Model(Node2 from, Node2 to) : base(from, to) { }
+	public class EdgeModel : Edge {
+		public EdgeModel(Node from, Node to) : base(from, to) { }
 
 		public NodeColor Color {
 			get {

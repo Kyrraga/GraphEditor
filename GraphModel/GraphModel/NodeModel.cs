@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 
 namespace GraphModelLibrary {
-	public class Node2Model : Node2 {
-		public Node2Model(NodeColor color = new NodeColor(), Point location = new Point()) : base() {
+	public class NodeModel : Node {
+		public NodeModel(NodeColor color = new NodeColor(), Point location = new Point()) : base() {
 			this.Color = color;
 			this.Location = location;
 		}

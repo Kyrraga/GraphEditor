@@ -25,7 +25,7 @@ namespace WindowsFormsApplication {
 			RectangleF bounds = g.VisibleClipBounds;
 			PointF middle = new PointF(bounds.X + bounds.Width / 2, bounds.Y + bounds.Height / 2);
 
-			Node2Model[] nodes = _graphModel.Graph.ToArray() as Node2Model[];
+			NodeModel[] nodes = _graphModel.Graph.ToArray() as NodeModel[];
 			for (int i = 0; i < nodes.Length; ++i) {
 				PointF point = indexToPoint(middle, nodes.Length, i, 50);
 				drawCircle(g, point, nodes[i].Color);
@@ -40,12 +40,12 @@ namespace WindowsFormsApplication {
 			RectangleF bounds = g.VisibleClipBounds;
 			PointF middle = new PointF(bounds.X + bounds.Width / 2, bounds.Y + bounds.Height / 2);
 
-			Node2Model[] nodes = _graphModel.Graph.ToArray() as Node2Model[];
+			NodeModel[] nodes = _graphModel.Graph.ToArray() as NodeModel[];
 			int radius = 50;
 			for (int i = 0; i < nodes.Length; ++i) {
 				PointF point1 = indexToPoint(middle, nodes.Length, i, radius);
-				foreach (Edge2Model edge in nodes[i].GetOutgoingEdges()) {
-					INode2 node2 = edge.To;
+				foreach (EdgeModel edge in nodes[i].GetOutgoingEdges()) {
+					INode node2 = edge.To;
 					int j = 0;
 					for (j = 0; j < nodes.Length; ++j) {
 						if (nodes[j] == node2) {

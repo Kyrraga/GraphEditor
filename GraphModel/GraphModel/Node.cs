@@ -5,27 +5,27 @@ using System.Linq;
 using System.Text;
 
 namespace GraphModelLibrary {
-	public class Node2 : INode2 {
-		public Node2() {
-			this._incomingEdges = new HashSet<Edge2>();
-			this._outgoingEdges = new HashSet<Edge2>();
+	public class Node : INode {
+		public Node() {
+			this._incomingEdges = new HashSet<Edge>();
+			this._outgoingEdges = new HashSet<Edge>();
 		}
 
-		public void AddIncomingEdge(Edge2 edge) {
+		public void AddIncomingEdge(Edge edge) {
 			if (edge.To != this) {
 				throw new InvalidOperationException();
 			}
 
 			_incomingEdges.Add(edge);
 		}
-		public void AddOutgoingEdge(Edge2 edge) {
+		public void AddOutgoingEdge(Edge edge) {
 			if (edge.From != this) {
 				throw new InvalidOperationException();
 			}
 
 			_outgoingEdges.Add(edge);
 		}
-		public void RemoveIncomingEdge(Edge2 edge) {
+		public void RemoveIncomingEdge(Edge edge) {
 			if (edge.To != this) {
 				throw new InvalidOperationException();
 			}
@@ -35,7 +35,7 @@ namespace GraphModelLibrary {
 				throw new InvalidOperationException();
 			}
 		}
-		public void RemoveOutgoingEdge(Edge2 edge) {
+		public void RemoveOutgoingEdge(Edge edge) {
 			if (edge.From != this) {
 				throw new InvalidOperationException();
 			}
@@ -46,20 +46,20 @@ namespace GraphModelLibrary {
 			}
 		}
 
-		public IEnumerable<IEdge2> GetIncomingEdges() {
-			return _incomingEdges as IEnumerable<IEdge2>;
+		public IEnumerable<IEdge> GetIncomingEdges() {
+			return _incomingEdges as IEnumerable<IEdge>;
 		}
-		public IEnumerable<INode2> GetIncomingNodes() {
+		public IEnumerable<INode> GetIncomingNodes() {
 			return _incomingEdges.Select((edge) => (edge.From));
 		}
-		public IEnumerable<IEdge2> GetOutgoingEdges() {
-			return _outgoingEdges as IEnumerable<IEdge2>;
+		public IEnumerable<IEdge> GetOutgoingEdges() {
+			return _outgoingEdges as IEnumerable<IEdge>;
 		}
-		public IEnumerable<INode2> GetOutgoingNodes() {
+		public IEnumerable<INode> GetOutgoingNodes() {
 			return _outgoingEdges.Select((edge) => (edge.To));
 		}
 
-		readonly HashSet<Edge2> _incomingEdges;
-		readonly HashSet<Edge2> _outgoingEdges;
+		readonly HashSet<Edge> _incomingEdges;
+		readonly HashSet<Edge> _outgoingEdges;
 	}
 }

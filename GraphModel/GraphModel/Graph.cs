@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 
 namespace GraphModelLibrary {
-	public class Graph2 : IEnumerable<Node2> {
-		public Graph2() {
-			_list = new List<Node2>();
+	public class Graph : IEnumerable<Node> {
+		public Graph() {
+			_list = new List<Node>();
 		}
 
 		public int Count {
@@ -17,12 +17,12 @@ namespace GraphModelLibrary {
 			}
 		}
 
-		public void Add(Node2 node) {
+		public void Add(Node node) {
 			_list.Add(node);
 		}
 		[Obsolete]
-		public Node2 AddNode() {
-			Node2 node = new Node2();
+		public Node AddNode() {
+			Node node = new Node();
 			_list.Add(node);
 			return node;
 		}
@@ -31,15 +31,15 @@ namespace GraphModelLibrary {
 			_list.Clear();
 		}
 
-		public bool Contains(Node2 node) {
+		public bool Contains(Node node) {
 			return _list.Contains(node);
 		}
 
-		public IEnumerator<Node2> GetEnumerator() {
+		public IEnumerator<Node> GetEnumerator() {
 			return _list.GetEnumerator();
 		}
 
-		public bool Remove(Node2 node) {
+		public bool Remove(Node node) {
 			return _list.Remove(node);
 		}
 
@@ -47,6 +47,6 @@ namespace GraphModelLibrary {
 			return _list.GetEnumerator();
 		}
 
-		List<Node2> _list;
+		List<Node> _list;
 	}
 }

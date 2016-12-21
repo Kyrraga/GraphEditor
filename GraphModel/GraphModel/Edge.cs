@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 
 namespace GraphModelLibrary {
-	public class Edge2 : IEdge2 {
-		public Edge2(Node2 from, Node2 to) {
+	public class Edge : IEdge {
+		public Edge(Node from, Node to) {
 			this._from = from;
 			this._to = to;
 
@@ -13,12 +13,12 @@ namespace GraphModelLibrary {
 			_to.AddIncomingEdge(this);
 		}
 
-		public INode2 From {
+		public INode From {
 			get {
 				return _from;
 			}
 		}
-		public INode2 To {
+		public INode To {
 			get {
 				return _to;
 			}
@@ -29,7 +29,7 @@ namespace GraphModelLibrary {
 			_to.RemoveIncomingEdge(this);
 		}
 
-		readonly Node2 _from;
-		readonly Node2 _to;
+		readonly Node _from;
+		readonly Node _to;
 	}
 }

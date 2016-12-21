@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 
 namespace GraphModelLibrary {
-	public interface IEdge2 {
-		INode2 From { get; }
-		INode2 To { get; }
+	public interface IEdge {
+		INode From { get; }
+		INode To { get; }
 	}
 }
