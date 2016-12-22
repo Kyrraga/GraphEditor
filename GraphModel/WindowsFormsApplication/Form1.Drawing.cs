@@ -56,7 +56,8 @@ namespace WindowsFormsApplication {
 						}
 					}
 					Point point2 = indexToPoint(middle, nodes.Length, j, radius);
-					drawArrow(context, point1, point2, edge.Color);
+					Color color = convertColor(edge.Color);
+					context.DrawArrow(point1, point2, color);
 				}
 			}
 		}
@@ -74,11 +75,6 @@ namespace WindowsFormsApplication {
 			float x = middle.X + (float)Math.Cos(angle) * radius;
 			float y = middle.Y + (float)Math.Sin(angle) * radius;
 			return Point.Round(new PointF(x, y));
-		}
-
-		private void drawArrow(DrawingContext context, Point point1, Point point2, NodeColor color) {
-			Pen pen = new Pen(convertColor(color));
-			context.DrawLine(point1, point2, pen);
 		}
 
 		private Color convertColor(NodeColor color) {

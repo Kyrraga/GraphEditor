@@ -68,6 +68,11 @@ namespace UILogicLibrary {
 			int r = radius;
 			Graphics.FillEllipse(brush, centre.X - r, centre.Y - r, r * 2, r * 2);
 		}
+		public void DrawArrow(Point a, Point b, Color? color = null) {
+			Color c = color ?? DefaultColor;
+			Pen pen = new Pen(c);
+			Graphics.DrawLine(pen, a, b);
+		}
 
 		Pen _pen;
 		SolidBrush _brush;
