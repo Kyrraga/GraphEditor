@@ -5,16 +5,71 @@ using System.Linq;
 using System.Text;
 
 namespace UILogicLibrary {
-	public abstract class DrawingContext {
-		public abstract void DrawRectangle(Rectangle rect);
-		public abstract void DrawLine(Point a, Point b);
-		public abstract Size ScreenSize { get; }
-		public abstract Point MousePosition { get; }
+	public class DrawingContext {
 
-		public void SetGraphics(Graphics g) {
-			graphics = g;
+		public readonly Graphics Graphics;
+		public readonly Point MousePosition;
+		public Color DefaultColor = Color.Black;
+		public float DefaultWidth = 2;
+
+		public DrawingContext(Graphics g, Point mouse) {
+			this.Graphics = g;
+			this.MousePosition = mouse;
+			_pen = new Pen(DefaultColor, DefaultWidth);
 		}
 
-		protected Graphics graphics;
+		public Pen DefaultPen {
+			get {
+				if (_pen == null || _pen.Color != DefaultColor || _pen.Width != DefaultWidth) {
+					_pen = new Pen(DefaultColor, DefaultWidth);
+				}
+				return _pen;
+			}
+			set {
+				DefaultColor = value.Color;
+				DefaultWidth = value.Width;
+			}
+		}
+		public Brush DefaultBrush {
+			get {
+				if (_brush == null || _brush.Color != DefaultColor) {
+					_brush = new SolidBrush(DefaultColor);
+				}
+				return _brush;
+			}
+		}
+
+		public void DrawLine(Point a, Point b, Pen pen = null) {
+			pen = pen ?? DefaultPen;
+			Graphics.DrawLine(pen, a, b);
+		}
+		public void DrawRectangle(Rectangle rect, Pen pen = null) {
+			pen = pen ?? DefaultPen;
+
+			if (rect.Width < 0) {
+				rect.Width = -rect.Width;
+				rect.X -= rect.Width;
+			}
+			if (rect.Height < 0) {
+				rect.Height = -rect.Height;
+				rect.Y -= rect.Height;
+			}
+
+			Graphics.DrawRectangle(pen, rect);
+		}
+		public void FillEllipse(Rectangle rect, Brush brush = null) {
+			brush = brush ?? DefaultBrush;
+			Graphics.FillEllipse(brush, rect);
+		}
+		public void FillCircle(Point centre, int radius, Brush brush = null) {
+			brush = brush ?? DefaultBrush;
+			int x = centre.X;
+			int y = centre.Y;
+			int r = radius;
+			Graphics.FillEllipse(brush, centre.X - r, centre.Y - r, r * 2, r * 2);
+		}
+
+		Pen _pen;
+		SolidBrush _brush;
 	}
 }

@@ -36,7 +36,7 @@ namespace WindowsFormsApplication {
 			}
 		}
 
-
+		
 		private GraphModel _graphModel = null;
 		private GraphView _graphView = null;
 		private EditTool _editTool = null;
@@ -46,7 +46,7 @@ namespace WindowsFormsApplication {
 			graphBox.MouseMove += graphBox_MouseMove;
 			graphBox.MouseUp   += graphBox_MouseUp;
 			graphBox.Paint += graphBox_Draw;
-			_editTool = new EditTool(new ConcreteDrawingContext(graphBox));
+			_editTool = new EditTool();
 		}
 
 		// buttons
@@ -80,10 +80,16 @@ namespace WindowsFormsApplication {
 		private void graphBox_MouseMove(object sender, MouseEventArgs e) {
 			graphBox.Invalidate();
 		}
+
 		private void graphBox_Draw(object sender, PaintEventArgs e) {
 			Graphics g = e.Graphics;
-			drawGraph(g);
-			_editTool.Draw(g);
+			Point mouse = graphBox.PointToClient(Cursor.Position);
+
+			DrawingContext context = new DrawingContext(g, mouse);
+			g.FillRegion(Brushes.Beige, g.Clip);
+			drawGraph(context);
+			_editTool.Draw(context);
+
 			debugLabel.Text = _editTool.State.ToString();
 		}
 	}

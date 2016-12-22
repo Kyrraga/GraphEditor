@@ -45,6 +45,7 @@
     <Compile Include="EditTool.cs" />
     <Compile Include="EditToolState.cs" />
     <Compile Include="GraphView.cs" />
+    <Compile Include="IEnumerableExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectionState.cs" />
   </ItemGroup>

@@ -9,9 +9,7 @@ namespace UILogicLibrary
 {
 	public class EditTool {
 
-		public EditTool(DrawingContext context) {
-			this._drawingContext = context;
-		}
+		public EditTool() {	}
 
 		public GraphView GraphView {
 			get {
@@ -52,13 +50,11 @@ namespace UILogicLibrary
 		public void MouseMoved(Point location) {
 			_state = _state.MouseMoved(location);
 		}
-		public void Draw(Graphics g) {
-			_drawingContext.SetGraphics(g);
-			_state.Draw(_drawingContext);
+		public void Draw(DrawingContext context) {
+			_state.Draw(context);
 		}
 
 		private EditToolState _state = new EmptyState();
-		private DrawingContext _drawingContext = null;
 		private GraphView _graph = null;
 	}
 }

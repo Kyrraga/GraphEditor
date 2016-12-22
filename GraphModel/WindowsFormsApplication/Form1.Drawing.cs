@@ -5,44 +5,48 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using GraphModelLibrary;
+using UILogicLibrary;
+using ExtensionMethods;
 
 namespace WindowsFormsApplication {
 	partial class Form1 {
-		private void drawGraph(Graphics g) {
-			g.FillRegion(Brushes.Beige, g.Clip);
+		private void drawGraph(DrawingContext context) {
 			if (_graphModel != null) {
-				drawEdges(g);
-				drawNodes(g);
+				drawEdges(context);
+				drawNodes(context);
 			}
 		}
 
-		private void drawNodes(Graphics g) {
+		private void drawNodes(DrawingContext context) {
 			if (_graphModel == null) {
 				throw new InvalidOperationException("Can't draw nodes without a graph");
 			}
 
-			RectangleF bounds = g.VisibleClipBounds;
+			RectangleF bounds = context.Graphics.VisibleClipBounds;
 			PointF middle = new PointF(bounds.X + bounds.Width / 2, bounds.Y + bounds.Height / 2);
 
-			Node[] nodes = _graphModel.Graph.ToArray();
-			for (int i = 0; i < nodes.Length; ++i) {
-				PointF point = indexToPoint(middle, nodes.Length, i, 50);
-				drawCircle(g, point, (nodes[i] as NodeModel).Color);
+			Graph graph = _graphModel.Graph;
+			foreach (var pair in graph.Indexed()) {
+				int index = (int)pair.Key;
+				NodeModel node = (NodeModel)pair.Value;
+				Point point = indexToPoint(middle, graph.Count, index, 50);
+				Color color = convertColor(node.Color);
+				context.FillCircle(point, 10, new SolidBrush(color));
 			}
 		}
 
-		private void drawEdges(Graphics g) {
+		private void drawEdges(DrawingContext context) {
 			if (_graphModel == null) {
 				throw new InvalidOperationException("Can't draw edges without a graph");
 			}
 
-			RectangleF bounds = g.VisibleClipBounds;
+			RectangleF bounds = context.Graphics.VisibleClipBounds;
 			PointF middle = new PointF(bounds.X + bounds.Width / 2, bounds.Y + bounds.Height / 2);
 
 			Node[] nodes = _graphModel.Graph.ToArray();
 			int radius = 50;
 			for (int i = 0; i < nodes.Length; ++i) {
-				PointF point1 = indexToPoint(middle, nodes.Length, i, radius);
+				Point point1 = indexToPoint(middle, nodes.Length, i, radius);
 				foreach (EdgeModel edge in nodes[i].GetOutgoingEdges()) {
 					Node node2 = edge.To as Node;
 					int j = 0;
@@ -51,8 +55,8 @@ namespace WindowsFormsApplication {
 							break;
 						}
 					}
-					PointF point2 = indexToPoint(middle, nodes.Length, j, radius);
-					drawArrow(g, point1, point2, edge.Color);
+					Point point2 = indexToPoint(middle, nodes.Length, j, radius);
+					drawArrow(context, point1, point2, edge.Color);
 				}
 			}
 		}
@@ -65,23 +69,16 @@ namespace WindowsFormsApplication {
 		/// <param name="i">Номер точки.</param>
 		/// <param name="radius">Радиус окружности.</param>
 		/// <returns></returns>
-		private PointF indexToPoint(PointF middle, int n, int i, int radius) {
+		private Point indexToPoint(PointF middle, int n, int i, int radius) {
 			double angle = Math.PI * 2 * i / n;
 			float x = middle.X + (float)Math.Cos(angle) * radius;
 			float y = middle.Y + (float)Math.Sin(angle) * radius;
-			return new PointF(x, y);
+			return Point.Round(new PointF(x, y));
 		}
 
-		private void drawCircle(Graphics g, PointF point, NodeColor color) {
-			Brush brush = new SolidBrush(convertColor(color));
-			int radius = 10;
-			RectangleF rect = new RectangleF(point.X - radius, point.Y - radius, radius * 2, radius * 2);
-			g.FillEllipse(brush, rect);
-		}
-
-		private void drawArrow(Graphics g, PointF point1, PointF point2, NodeColor color) {
+		private void drawArrow(DrawingContext context, Point point1, Point point2, NodeColor color) {
 			Pen pen = new Pen(convertColor(color));
-			g.DrawLine(pen, point1, point2);
+			context.DrawLine(point1, point2, pen);
 		}
 
 		private Color convertColor(NodeColor color) {
