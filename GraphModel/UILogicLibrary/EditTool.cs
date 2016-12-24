@@ -27,7 +27,6 @@ namespace UILogicLibrary
 				}
 			}
 		}
-
 		public EditToolState State {
 			get {
 				return _state;
