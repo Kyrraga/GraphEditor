@@ -16,6 +16,7 @@ namespace ExtensionMethods {
 			long index = 0;
 			foreach (T val in enumerable) {
 				yield return new KeyValuePair<long, T>(index, val);
+				index += 1;
 			}
 		}
 	}
