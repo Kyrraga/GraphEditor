@@ -9,7 +9,9 @@ namespace UILogicLibrary
 {
 	public class EditTool {
 
-		public EditTool() {	}
+		public EditTool() {
+			this._state = new EmptyState(this);
+		}
 
 		public GraphView GraphView {
 			get {
@@ -18,10 +20,10 @@ namespace UILogicLibrary
 			set {
 				_graph = value;
 				if (_graph == null) {
-					State = new EmptyState();
+					State = new EmptyState(this);
 				}
 				else {
-					State = new DefaultState();
+					State = new DefaultState(this);
 				}
 			}
 		}
@@ -30,31 +32,31 @@ namespace UILogicLibrary
 			get {
 				return _state;
 			}
-			private set {
+			set {
 				_state = value;
 			}
 		}
 
 		public void LeftMouseButtonDown(Point location) {
-			_state = _state.LeftMouseButtonDown(location);
+			_state.LeftMouseButtonDown(location);
 		}
 		public void LeftMouseButtonUp(Point location) {
-			_state = _state.LeftMouseButtonUp(location);
+			_state.LeftMouseButtonUp(location);
 		}
 		public void RightMouseButtonUp(Point location) {
-			_state = _state.RightMouseButtonUp(location);
+			_state.RightMouseButtonUp(location);
 		}
 		public void RightMouseButtonDown(Point location) {
-			_state = _state.RightMouseButtonDown(location);
+			_state.RightMouseButtonDown(location);
 		}
 		public void MouseMoved(Point location) {
-			_state = _state.MouseMoved(location);
+			_state.MouseMoved(location);
 		}
 		public void Draw(DrawingContext context) {
 			_state.Draw(context);
 		}
 
-		private EditToolState _state = new EmptyState();
+		private EditToolState _state = null;
 		private GraphView _graph = null;
 	}
 }

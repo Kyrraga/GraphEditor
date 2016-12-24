@@ -6,10 +6,10 @@ using System.Text;
 
 namespace UILogicLibrary {
 	public class DefaultState : EditToolState {
-		public DefaultState() { }
+		public DefaultState(EditTool tool) : base(tool) { }
 
-		public override EditToolState LeftMouseButtonDown(Point location) {
-			return new SelectionState(location);
+		public override void LeftMouseButtonDown(Point location) {
+			CurrentState = new SelectionState(EditTool, location);
 		}
 	}
 }

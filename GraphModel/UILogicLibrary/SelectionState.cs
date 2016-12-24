@@ -6,7 +6,7 @@ using System.Text;
 
 namespace UILogicLibrary {
 	public class SelectionState : EditToolState {
-		public SelectionState(Point start) {
+		public SelectionState(EditTool tool, Point start) : base(tool) {
 			this._start = start;
 		}
 
@@ -18,8 +18,8 @@ namespace UILogicLibrary {
 			context.DrawRectangle(rect);
 		}
 
-		public override EditToolState LeftMouseButtonUp(Point location) {
-			return new DefaultState();
+		public override void LeftMouseButtonUp(Point location) {
+			CurrentState = new DefaultState(EditTool);
 		}
 
 		private Point _start;
