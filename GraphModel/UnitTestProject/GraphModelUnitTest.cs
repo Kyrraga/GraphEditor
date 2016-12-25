@@ -58,19 +58,19 @@ Morbi elementum lorem et libero bibendum, ac egestas urna accumsan.";
 
 		[TestMethod]
 		public void Loading1() {
-			string path = @"..\..\..\..\Examples\Graph files\exampleA1-1.txt";
+			string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Examples", @"exampleA1-1.txt");
 			GraphModel model = GraphModel.Load(path);
 		}
 
 		[TestMethod]
 		public void Loading2() {
-			string path = @"..\..\..\..\Examples\Graph files\exampleA1-2.txt";
+			string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Examples", @"exampleA1-2.txt");
 			GraphModel model = GraphModel.Load(path);
 		}
 
 		[TestMethod]
 		public void Loading3() {
-			string path = @"..\..\..\..\Examples\Graph files\exampleA1-3.txt";
+			string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Examples", @"exampleA1-3.txt");
 			GraphModel model = GraphModel.Load(path);
 		}
 	}

@@ -15,20 +15,14 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_3F8ABCEE913807EE7B5EC554E91C6468"
+        "MsmKey" = "8:_90FAFB85DC7B81621A2A7DDE0D186DD3"
         "OwnerKey" = "8:_B058A08A8811424C9F8C257C6C266E92"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_47552D82A115E8B3C0ADB994761E9E22"
-        "OwnerKey" = "8:_B058A08A8811424C9F8C257C6C266E92"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_47552D82A115E8B3C0ADB994761E9E22"
-        "OwnerKey" = "8:_3F8ABCEE913807EE7B5EC554E91C6468"
+        "MsmKey" = "8:_90FAFB85DC7B81621A2A7DDE0D186DD3"
+        "OwnerKey" = "8:_E5C631BF9738B73273ECDC33B3DAE453"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -39,20 +33,26 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_47552D82A115E8B3C0ADB994761E9E22"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_E5C631BF9738B73273ECDC33B3DAE453"
         "OwnerKey" = "8:_B058A08A8811424C9F8C257C6C266E92"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3F8ABCEE913807EE7B5EC554E91C6468"
+        "OwnerKey" = "8:_E5C631BF9738B73273ECDC33B3DAE453"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_90FAFB85DC7B81621A2A7DDE0D186DD3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B058A08A8811424C9F8C257C6C266E92"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -110,7 +110,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:.NETFramework,Version=v4.5"
+                "FrameworkVersion" = "8:.NETFramework,Version=v4.0"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=395269"
                 }
@@ -118,20 +118,20 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3F8ABCEE913807EE7B5EC554E91C6468"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_90FAFB85DC7B81621A2A7DDE0D186DD3"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:UILogicLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:GraphModelLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_3F8ABCEE913807EE7B5EC554E91C6468"
+                    "_90FAFB85DC7B81621A2A7DDE0D186DD3"
                     {
-                    "Name" = "8:UILogicLibrary.dll"
+                    "Name" = "8:GraphModelLibrary.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:UILogicLibrary.dll"
+            "SourcePath" = "8:GraphModelLibrary.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_0B776C9C423846DEAD7163B31CA26FA1"
@@ -149,20 +149,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_47552D82A115E8B3C0ADB994761E9E22"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E5C631BF9738B73273ECDC33B3DAE453"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:GraphModelLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:UILogicLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_47552D82A115E8B3C0ADB994761E9E22"
+                    "_E5C631BF9738B73273ECDC33B3DAE453"
                     {
-                    "Name" = "8:GraphModelLibrary.dll"
+                    "Name" = "8:UILogicLibrary.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:GraphModelLibrary.dll"
+            "SourcePath" = "8:UILogicLibrary.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_0B776C9C423846DEAD7163B31CA26FA1"
@@ -235,22 +235,22 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:SetupProject"
-        "ProductCode" = "8:{27E5DC32-CC08-4E94-BFB1-9E812DC0F1B0}"
-        "PackageCode" = "8:{1646CD09-CF72-4CDF-8535-FEEE9058ED31}"
+        "ProductName" = "8:GraphEditor"
+        "ProductCode" = "8:{81BAE766-2FF7-4EFC-96E2-23AC51CEFF7B}"
+        "PackageCode" = "8:{42AF0836-81A1-448B-8B1E-D62386199EFA}"
         "UpgradeCode" = "8:{44FBDE23-83A5-4B49-936B-19C370A213EC}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Default Company Name"
+        "ProductVersion" = "8:0.1.9"
+        "Manufacturer" = "8:GraphEditorTeam"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
         "Title" = "8:SetupProject"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Default Company Name"
+        "ARPCONTACT" = "8:Kinrany"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
@@ -357,7 +357,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_17A79D3B6DF74C4F8385A1B3251F32BD"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_9400250203A54D8491C999E0F11F4B5D"
             {
             "Name" = "8:GraphEditor"
             "Arguments" = "8:"
@@ -365,9 +365,9 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_A126EBCFE0894836BF96FA52F2AEF5E9"
+            "Target" = "8:_B058A08A8811424C9F8C257C6C266E92"
             "Folder" = "8:_A126EBCFE0894836BF96FA52F2AEF5E9"
-            "WorkingFolder" = "8:_A126EBCFE0894836BF96FA52F2AEF5E9"
+            "WorkingFolder" = "8:_0B776C9C423846DEAD7163B31CA26FA1"
             "Icon" = "8:"
             "Feature" = "8:"
             }
@@ -792,6 +792,34 @@
             "ProjectOutputGroupRegister" = "3:1"
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{D532B930-50FA-464D-9B7A-284C4EC7ACE7}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D6CDCE24B830425289F92E47BC4877EE"
+            {
+            "SourcePath" = "8:"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_0B776C9C423846DEAD7163B31CA26FA1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:ContentFiles"
             "OutputProjectGuid" = "8:{D532B930-50FA-464D-9B7A-284C4EC7ACE7}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"

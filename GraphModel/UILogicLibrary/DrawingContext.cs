@@ -9,7 +9,7 @@ namespace UILogicLibrary {
 
 		public readonly Graphics Graphics;
 		public readonly Point MousePosition;
-		public Color DefaultColor = Color.Black;
+		public Color DefaultColor = Color.Magenta;
 		public float DefaultWidth = 1;
 
 		public DrawingContext(Graphics g, Point mouse) {
@@ -67,7 +67,7 @@ namespace UILogicLibrary {
 		}
 		public void DrawArrow(Point a, Point b, Color? color = null) {
 			Color c = color ?? DefaultColor;
-			Pen pen = new Pen(c);
+			Pen pen = new Pen(c, 2);
 			Graphics.DrawLine(pen, a, b);
 		}
 

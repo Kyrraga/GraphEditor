@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -102,7 +103,7 @@ namespace WindowsFormsApplication {
 			}
 		}
 		private void loadExampleButton_Click(object sender, EventArgs e) {
-			string path = @"..\..\..\..\Examples\Graph files\exampleA1-4.txt";
+			string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Examples", @"exampleA1-4.txt");
 			GraphModel = GraphModel.Load(path);
 		}
 

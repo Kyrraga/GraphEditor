@@ -49,7 +49,7 @@ namespace UILogicLibrary {
 		
 
 		Graph _graph;
-		int _nodeRadius = 10;
+		int _nodeRadius = 12;
 		int _edgeWidth = 2;
 
 		double distance(Point a, Point b) {

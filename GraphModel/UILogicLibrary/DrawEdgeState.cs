@@ -25,6 +25,10 @@ namespace UILogicLibrary {
 			CurrentState = new DefaultState(EditTool);
 		}
 
+		public override void MouseRightClick(NodeModel node) {
+			CurrentState = new DefaultState(EditTool);
+		}
+
 		readonly NodeModel _start;
 	}
 }
