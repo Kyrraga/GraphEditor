@@ -62,8 +62,8 @@ namespace UILogicLibrary {
 			_lastPoint = point;
 
 			if (_timer.Enabled) {
-				Debug.Assert(Left == true);
 				_timer.Stop();
+				Debug.Assert(Left == true);
 				LeftPressed(_startPoint);
 			}
 			Moved(point);
