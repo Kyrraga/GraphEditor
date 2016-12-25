@@ -53,21 +53,6 @@ namespace WindowsFormsApplication {
 			}
 		}
 
-		/// <summary>
-		/// Вычисляет координаты точки на окружности.
-		/// </summary>
-		/// <param name="middle">Центр окружности.</param>
-		/// <param name="n">Количество точек.</param>
-		/// <param name="i">Номер точки.</param>
-		/// <param name="radius">Радиус окружности.</param>
-		/// <returns></returns>
-		private Point indexToPoint(PointF middle, int n, int i, int radius) {
-			double angle = Math.PI * 2 * i / n;
-			float x = middle.X + (float)Math.Cos(angle) * radius;
-			float y = middle.Y + (float)Math.Sin(angle) * radius;
-			return Point.Round(new PointF(x, y));
-		}
-
 		private Color convertColor(NodeColor color) {
 			switch (color) {
 				case NodeColor.Black:

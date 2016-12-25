@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -124,7 +125,8 @@ namespace GraphModelLibrary {
 			_graph = new Graph();
 			NodeModel[] nodes = new NodeModel[n];
 			for (int i = 0; i < nodes.Length; ++i) {
-				nodes[i] = new NodeModel();
+				Point location = IndexToPoint(n, i);
+				nodes[i] = new NodeModel(location);
 				_graph.Add(nodes[i]);
 			}
 
@@ -172,6 +174,22 @@ namespace GraphModelLibrary {
 		/// <returns>Массив чисел.</returns>
 		static int[] StringToIntArray(string str) {
 			return str.Split().Map(x => int.Parse(x));
+		}
+
+		/// <summary>
+		/// Вычисляет координаты точки на окружности.
+		/// </summary>
+		/// <param name="n">Количество точек.</param>
+		/// <param name="i">Номер точки.</param>
+		/// <returns></returns>
+		private Point IndexToPoint(int n, int i) {
+			Point middle = new Point(400, 200);
+			double angle = Math.PI * 2 * i / n;
+			int radius = 50;
+
+			float x = middle.X + (float)Math.Cos(angle) * radius;
+			float y = middle.Y + (float)Math.Sin(angle) * radius;
+			return Point.Round(new PointF(x, y));
 		}
 	}
 }
