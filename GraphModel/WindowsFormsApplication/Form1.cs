@@ -24,7 +24,6 @@ namespace WindowsFormsApplication {
 			private set {
 				_graphModel = value;
 				GraphView = new GraphView(_graphModel.Graph);
-				graphBox.Invalidate();
 			}
 		}
 		public GraphView GraphView {
@@ -37,10 +36,18 @@ namespace WindowsFormsApplication {
 			}
 		}
 
-		
+		protected override CreateParams CreateParams {
+			get {
+				var cp = base.CreateParams;
+				cp.ExStyle |= 0x02000000;    // Turn on WS_EX_COMPOSITED
+				return cp;
+			}
+		}
+
 		private GraphModel _graphModel = null;
 		private GraphView _graphView = null;
 		private EditTool _editTool = null;
+		private Timer _timer;
 
 		private void Form1_Load(object sender, EventArgs e) {
 			Mouse mouse = new Mouse();
@@ -69,10 +76,16 @@ namespace WindowsFormsApplication {
 			graphBox.MouseMove += (s, a) => {
 				Point location = a.Location;
 				mouse.MouseMoved(location);
-				graphBox.Invalidate();
 			};
-			graphBox.Paint += graphBox_Draw;
 			_editTool = new EditTool(mouse);
+
+			
+			graphBox.Paint += graphBox_Draw;
+
+			_timer = new Timer();
+			_timer.Interval = 1000 / 30;
+			_timer.Tick += (s, h) => graphBox.Invalidate();
+			_timer.Start();
 		}
 
 		// buttons
@@ -84,17 +97,9 @@ namespace WindowsFormsApplication {
 				GraphModel = GraphModel.Load(path);
 			}
 		}
-		private void drawButton_Click(object sender, EventArgs e) {
-			graphBox.Invalidate();
-		}
 		private void loadExampleButton_Click(object sender, EventArgs e) {
 			string path = @"..\..\..\..\Examples\Graph files\exampleA1-4.txt";
 			GraphModel = GraphModel.Load(path);
-		}
-		
-		// graphBox events
-		private void graphBox_MouseMove(object sender, MouseEventArgs e) {
-			graphBox.Invalidate();
 		}
 
 		private void graphBox_Draw(object sender, PaintEventArgs e) {

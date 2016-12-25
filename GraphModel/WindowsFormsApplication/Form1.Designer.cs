@@ -24,7 +24,6 @@
 		/// </summary>
 		private void InitializeComponent() {
 			this.loadGraphButton = new System.Windows.Forms.Button();
-			this.drawButton = new System.Windows.Forms.Button();
 			this.graphBox = new System.Windows.Forms.GroupBox();
 			this.loadExampleButton = new System.Windows.Forms.Button();
 			this.debugLabel = new System.Windows.Forms.Label();
@@ -39,16 +38,6 @@
 			this.loadGraphButton.Text = "Открыть граф";
 			this.loadGraphButton.UseVisualStyleBackColor = true;
 			this.loadGraphButton.Click += new System.EventHandler(this.loadGraphButton_Click);
-			// 
-			// drawButton
-			// 
-			this.drawButton.Location = new System.Drawing.Point(333, 25);
-			this.drawButton.Name = "drawButton";
-			this.drawButton.Size = new System.Drawing.Size(111, 23);
-			this.drawButton.TabIndex = 1;
-			this.drawButton.Text = "Нарисовать граф";
-			this.drawButton.UseVisualStyleBackColor = true;
-			this.drawButton.Click += new System.EventHandler(this.drawButton_Click);
 			// 
 			// graphBox
 			// 
@@ -85,7 +74,6 @@
 			this.Controls.Add(this.debugLabel);
 			this.Controls.Add(this.loadExampleButton);
 			this.Controls.Add(this.graphBox);
-			this.Controls.Add(this.drawButton);
 			this.Controls.Add(this.loadGraphButton);
 			this.DoubleBuffered = true;
 			this.Name = "Form1";
@@ -99,7 +87,6 @@
 		#endregion
 
 		private System.Windows.Forms.Button loadGraphButton;
-		private System.Windows.Forms.Button drawButton;
 		private System.Windows.Forms.GroupBox graphBox;
 		private System.Windows.Forms.Button loadExampleButton;
 		private System.Windows.Forms.Label debugLabel;

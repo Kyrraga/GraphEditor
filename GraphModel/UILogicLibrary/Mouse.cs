@@ -14,32 +14,11 @@ namespace UILogicLibrary {
 			_timer.Elapsed += OnTimerElapsed;
 		}
 
-		public bool Left {
-			get {
-				return _left;
-			}
-			private set {
-				Debug.Assert(_left != value);
-				_left = value;
-			}
-		}
-		public bool Right {
-			get {
-				return _right;
-			}
-			private set {
-				Debug.Assert(_right != value);
-				_right = value;
-			}
-		}
-
 		public void LeftButtonDown(Point point) {
-			Left = true;
 			_startPoint = point;
 			_timer.Start(_delay);
 		}
 		public void LeftButtonUp(Point point) {
-			Left = false;
 			if (_timer.Enabled) {
 				_timer.Stop();
 				LeftClick(point);
@@ -49,10 +28,9 @@ namespace UILogicLibrary {
 			}
 		}
 		public void RightButtonDown(Point point) {
-			Right = true;
+
 		}
 		public void RightButtonUp(Point point) {
-			Right = false;
 			RightClick(point);
 		}
 		public void MouseMoved(Point point) {
@@ -63,7 +41,6 @@ namespace UILogicLibrary {
 
 			if (_timer.Enabled) {
 				_timer.Stop();
-				Debug.Assert(Left == true);
 				LeftPressed(_startPoint);
 			}
 			Moved(point);
@@ -82,11 +59,7 @@ namespace UILogicLibrary {
 		Point _startPoint;
 		Point _lastPoint = new Point(-1000, -1000);
 
-		bool _left = false;
-		bool _right = false;
-
 		void OnTimerElapsed(object sender, ElapsedEventArgs e) {
-			Debug.Assert(Left == true);
 			LeftPressed(_startPoint);
 		}
 	}
