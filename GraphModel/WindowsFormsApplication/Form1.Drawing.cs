@@ -29,7 +29,7 @@ namespace WindowsFormsApplication {
 			foreach (var pair in graph.Indexed()) {
 				int index = (int)pair.Key;
 				NodeModel node = (NodeModel)pair.Value;
-				Point point = indexToPoint(middle, graph.Count, index, 50);
+				Point point = node.Location;
 				Color color = convertColor(node.Color);
 				context.FillCircle(point, 10, new SolidBrush(color));
 			}
@@ -43,21 +43,12 @@ namespace WindowsFormsApplication {
 			RectangleF bounds = context.Graphics.VisibleClipBounds;
 			PointF middle = new PointF(bounds.X + bounds.Width / 2, bounds.Y + bounds.Height / 2);
 
-			Node[] nodes = _graphModel.Graph.ToArray();
-			int radius = 50;
-			for (int i = 0; i < nodes.Length; ++i) {
-				Point point1 = indexToPoint(middle, nodes.Length, i, radius);
-				foreach (EdgeModel edge in nodes[i].GetOutgoingEdges()) {
-					Node node2 = edge.To as Node;
-					int j = 0;
-					for (j = 0; j < nodes.Length; ++j) {
-						if (nodes[j] == node2) {
-							break;
-						}
-					}
-					Point point2 = indexToPoint(middle, nodes.Length, j, radius);
+			Graph graph = _graphModel.Graph;
+			foreach (NodeModel node in graph) {
+				foreach (EdgeModel edge in node.GetOutgoingEdges()) {
+					NodeModel node2 = edge.To as NodeModel;
 					Color color = convertColor(edge.Color);
-					context.DrawArrow(point1, point2, color);
+					context.DrawArrow(node.Location, node2.Location, color);
 				}
 			}
 		}
