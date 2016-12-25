@@ -50,7 +50,7 @@ namespace WindowsFormsApplication {
 		private Timer _timer;
 
 		private void Form1_Load(object sender, EventArgs e) {
-			Mouse mouse = new Mouse();
+			var mouse = new UILogicLibrary.Mouse();
 			graphBox.MouseDown += (s, a) => {
 				Point location = a.Location;
 				switch (a.Button) {
@@ -77,7 +77,11 @@ namespace WindowsFormsApplication {
 				Point location = a.Location;
 				mouse.MouseMoved(location);
 			};
-			_editTool = new EditTool(mouse);
+
+			this.KeyPreview = true;
+			var keyboard = new ConcreteKeyboard(this);
+
+			_editTool = new EditTool(mouse, keyboard);
 
 			
 			graphBox.Paint += graphBox_Draw;

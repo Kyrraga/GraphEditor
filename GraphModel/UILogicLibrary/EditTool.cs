@@ -10,7 +10,7 @@ namespace UILogicLibrary
 {
 	public class EditTool {
 
-		public EditTool(Mouse mouse) {
+		public EditTool(Mouse mouse, Keyboard keyboard) {
 			this._state = new EmptyState(this);
 			this._selectedNodes = new HashSet<Node>();
 
@@ -20,6 +20,9 @@ namespace UILogicLibrary
 			mouse.LeftDepressed += (p => MouseLeftDepressed(p));
 			mouse.Moved += (p => State.MouseMoved(p));
 			this._mouse = mouse;
+
+			keyboard.KeyPressed += KeyPressed;
+			this._keyboard = keyboard;
 		}
 
 		public GraphView GraphView {
@@ -42,6 +45,11 @@ namespace UILogicLibrary
 			}
 			set {
 				_state = value;
+			}
+		}
+		public Keyboard Keyboard {
+			get {
+				return _keyboard;
 			}
 		}
 
@@ -72,7 +80,14 @@ namespace UILogicLibrary
 		public void ClearSelected() {
 			_selectedNodes.Clear();
 		}
-		public void SetSelected(ICollection<Node> collection) {
+		public void DeleteSelected() {
+			foreach (Node node in _selectedNodes) {
+				GraphView.Graph.Remove(node);
+				node.Delete();
+			}
+			_selectedNodes.Clear();
+		}
+        public void SetSelected(ICollection<Node> collection) {
 			ClearSelected();
 			AddSelected(collection);
 		}
@@ -85,10 +100,11 @@ namespace UILogicLibrary
 			AddSelected(rect);
 		}
 
-		EditToolState _state;
+		readonly Mouse _mouse;
+		readonly Keyboard _keyboard;
+		readonly HashSet<Node> _selectedNodes;
 		GraphView _graph = null;
-		Mouse _mouse;
-		HashSet<Node> _selectedNodes;
+		EditToolState _state;
 
 		void MouseLeftClick(Point p) {
 			Object o = GraphView?.FindClicked(p);
@@ -133,6 +149,9 @@ namespace UILogicLibrary
 			}
 
 			State.MouseLeftDepressed(p);
+		}
+		void KeyPressed(Keyboard.Key key) {
+			State.KeyPressed(key);
 		}
 
 		void DrawSelected(DrawingContext context) {

@@ -28,7 +28,12 @@ namespace UILogicLibrary {
 
 		void Depressed(Point point) {
 			Rectangle rect = SelectionRectangle(point);
-			EditTool.SetSelected(rect);
+			if (EditTool.Keyboard.IsKeyDown(Keyboard.Key.Shift)) {
+				EditTool.AddSelected(rect);
+			}
+			else {
+				EditTool.SetSelected(rect);
+			}
 			CurrentState = new DefaultState(EditTool);
 		}
 

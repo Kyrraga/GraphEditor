@@ -21,6 +21,7 @@ namespace UILogicLibrary {
 		public virtual void MouseRightClick(Point location) { }
 		public virtual void MouseRightClick(NodeModel node) { }
 		public virtual void MouseMoved(Point location) { }
+		public virtual void KeyPressed(Keyboard.Key key) { }
 		public virtual void Draw(DrawingContext context) { }
 
 		protected EditToolState CurrentState {
@@ -35,18 +36,6 @@ namespace UILogicLibrary {
 			get {
 				return _editTool;
 			}
-		}
-
-		protected virtual void TimerElapsed(object sender, ElapsedEventArgs e) {
-
-		}
-		protected void StartTimer() {
-			_timer = new Timer(500);
-			_timer.Elapsed += TimerElapsed;
-			_timer.Start();
-		}
-		protected void StopTimer() {
-			_timer.Stop();
 		}
 
 		private Timer _timer;

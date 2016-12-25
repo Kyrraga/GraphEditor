@@ -42,11 +42,13 @@
   <ItemGroup>
     <Compile Include="DefaultState.cs" />
     <Compile Include="DragState.cs" />
+    <Compile Include="DrawEdgeState.cs" />
     <Compile Include="DrawingContext.cs" />
     <Compile Include="EditTool.cs" />
     <Compile Include="EditToolState.cs" />
     <Compile Include="GraphView.cs" />
     <Compile Include="IEnumerableExtension.cs" />
+    <Compile Include="Keyboard.cs" />
     <Compile Include="Mouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectionState.cs" />

@@ -59,6 +59,15 @@ namespace GraphModelLibrary {
 			return _outgoingEdges.Select((edge) => (edge.To));
 		}
 
+		public void Delete() {
+			while (_incomingEdges.Count > 0) {
+				_incomingEdges.First().Delete();
+			}
+			while (_outgoingEdges.Count > 0) {
+				_outgoingEdges.First().Delete();
+			}
+		}
+
 		readonly HashSet<Edge> _incomingEdges;
 		readonly HashSet<Edge> _outgoingEdges;
 	}
