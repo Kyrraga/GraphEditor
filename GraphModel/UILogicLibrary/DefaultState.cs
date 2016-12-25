@@ -13,6 +13,10 @@ namespace UILogicLibrary {
 			CurrentState = new SelectionState(EditTool, location);
 		}
 
+		public override void MouseLeftPressed(NodeModel node) {
+			CurrentState = new DragState(EditTool, node);
+		}
+
 		public override void MouseLeftClick(Point location) {
 			NodeModel node = new NodeModel(location);
 			EditTool.GraphView.Graph.Add(node);
@@ -20,6 +24,10 @@ namespace UILogicLibrary {
 
 		public override void MouseLeftClick(NodeModel node) {
 			EditTool.SetSelected(node);
+		}
+
+		public override void MouseRightClick(Point location) {
+			EditTool.ClearSelected();
 		}
 	}
 }

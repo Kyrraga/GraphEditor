@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DefaultState.cs" />
+    <Compile Include="DragState.cs" />
     <Compile Include="DrawingContext.cs" />
     <Compile Include="EditTool.cs" />
     <Compile Include="EditToolState.cs" />
