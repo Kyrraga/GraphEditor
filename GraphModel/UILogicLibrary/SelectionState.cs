@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using GraphModelLibrary;
 
 namespace UILogicLibrary {
 	public class SelectionState : EditToolState {
@@ -12,16 +13,31 @@ namespace UILogicLibrary {
 
 		public override void Draw(DrawingContext context) {
 			Point mouse = context.MousePosition;
-			Rectangle rect = new Rectangle();
-			rect.Location = _start;
-			rect.Size = new Size(mouse.X - _start.X, mouse.Y - _start.Y);
+			Rectangle rect = SelectionRectangle(mouse);
 			context.DrawRectangle(rect);
 		}
 
 		public override void MouseLeftDepressed(Point location) {
+			Depressed(location);
+		}
+		public override void MouseLeftDepressed(NodeModel node) {
+			Depressed(node.Location);
+		}
+
+		Point _start;
+
+		void Depressed(Point point) {
+			Rectangle rect = SelectionRectangle(point);
+			EditTool.SetSelected(rect);
 			CurrentState = new DefaultState(EditTool);
 		}
 
-		private Point _start;
+		Rectangle SelectionRectangle(Point point) {
+			int x = Math.Min(point.X, _start.X);
+			int y = Math.Min(point.Y, _start.Y);
+			int width = Math.Abs(point.X - _start.X);
+			int height = Math.Abs(point.Y - _start.Y);
+			return new Rectangle(x, y, width, height);
+		}
 	}
 }

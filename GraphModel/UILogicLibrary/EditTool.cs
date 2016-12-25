@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace UILogicLibrary
 
 		public EditTool(Mouse mouse) {
 			this._state = new EmptyState(this);
+			this._selectedNodes = new HashSet<Node>();
 
 			mouse.LeftClick += (p => MouseLeftClick(p));
 			mouse.RightClick += (p => MouseRightClick(p));
@@ -45,7 +47,48 @@ namespace UILogicLibrary
 
 		public void Draw(DrawingContext context) {
 			State.Draw(context);
+			DrawSelected(context);
 		}
+
+		public void AddSelected(ICollection<Node> collection) {
+			foreach (Node node in collection) {
+				_selectedNodes.Add(node);
+			}
+		}
+		public void AddSelected(params Node[] nodes) {
+			foreach (Node node in nodes) {
+				_selectedNodes.Add(node);
+			}
+		}
+		public void AddSelected(Rectangle rect) {
+			var list = new List<Node>();
+			foreach (NodeModel node in GraphView.Graph) {
+				if (rect.Contains(node.Location)) {
+					list.Add(node);
+				}
+			}
+			AddSelected(list);
+		}
+		public void ClearSelected() {
+			_selectedNodes.Clear();
+		}
+		public void SetSelected(ICollection<Node> collection) {
+			ClearSelected();
+			AddSelected(collection);
+		}
+		public void SetSelected(params Node[] nodes) {
+			ClearSelected();
+			AddSelected(nodes);
+		}
+		public void SetSelected(Rectangle rect) {
+			ClearSelected();
+			AddSelected(rect);
+		}
+
+		EditToolState _state;
+		GraphView _graph = null;
+		Mouse _mouse;
+		HashSet<Node> _selectedNodes;
 
 		void MouseLeftClick(Point p) {
 			Object o = GraphView?.FindClicked(p);
@@ -92,8 +135,11 @@ namespace UILogicLibrary
 			State.MouseLeftDepressed(p);
 		}
 
-		EditToolState _state;
-		GraphView _graph = null;
-		Mouse _mouse;
+		void DrawSelected(DrawingContext context) {
+			Pen pen = new Pen(Color.DarkBlue, 1);
+			foreach (NodeModel node in _selectedNodes) {
+				context.DrawCircle(node.Location, GraphView.NodeRadius + 1, pen);
+			}
+		}
 	}
 }

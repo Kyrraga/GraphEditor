@@ -45,17 +45,14 @@ namespace UILogicLibrary {
 		}
 		public void DrawRectangle(Rectangle rect, Pen pen = null) {
 			pen = pen ?? DefaultPen;
-
-			if (rect.Width < 0) {
-				rect.Width = -rect.Width;
-				rect.X -= rect.Width;
-			}
-			if (rect.Height < 0) {
-				rect.Height = -rect.Height;
-				rect.Y -= rect.Height;
-			}
-
 			Graphics.DrawRectangle(pen, rect);
+		}
+		public void DrawCircle(Point centre, int radius, Pen pen = null) {
+			pen = pen ?? DefaultPen;
+			Rectangle rect = new Rectangle();
+			rect.Location = new Point(centre.X - radius, centre.Y - radius);
+			rect.Size = new Size(radius * 2, radius * 2);
+			Graphics.DrawEllipse(pen, rect);
 		}
 		public void FillEllipse(Rectangle rect, Brush brush = null) {
 			brush = brush ?? DefaultBrush;

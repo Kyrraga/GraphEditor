@@ -49,8 +49,8 @@ namespace UILogicLibrary {
 		
 
 		Graph _graph;
-		int _nodeRadius = 15;
-		int _edgeWidth = 1;
+		int _nodeRadius = 10;
+		int _edgeWidth = 2;
 
 		double distance(Point a, Point b) {
 			int dx = a.X - b.X;

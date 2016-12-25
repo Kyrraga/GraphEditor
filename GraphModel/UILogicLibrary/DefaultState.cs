@@ -17,5 +17,9 @@ namespace UILogicLibrary {
 			NodeModel node = new NodeModel(location);
 			EditTool.GraphView.Graph.Add(node);
 		}
+
+		public override void MouseLeftClick(NodeModel node) {
+			EditTool.SetSelected(node);
+		}
 	}
 }
