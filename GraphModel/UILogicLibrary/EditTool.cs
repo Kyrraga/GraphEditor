@@ -9,8 +9,15 @@ namespace UILogicLibrary
 {
 	public class EditTool {
 
-		public EditTool() {
+		public EditTool(Mouse mouse) {
 			this._state = new EmptyState(this);
+
+			mouse.LeftClick += (p => State.MouseLeftClick(p));
+			mouse.RightClick += (p => State.MouseRightClick(p));
+			mouse.LeftPressed += (p => State.MouseLeftPressed(p));
+			mouse.LeftDepressed += (p => State.MouseLeftDepressed(p));
+			mouse.Moved += (p => State.MouseMoved(p));
+			this._mouse = mouse;
 		}
 
 		public GraphView GraphView {
@@ -36,26 +43,13 @@ namespace UILogicLibrary
 			}
 		}
 
-		public void LeftMouseButtonDown(Point location) {
-			_state.LeftMouseButtonDown(location);
-		}
-		public void LeftMouseButtonUp(Point location) {
-			_state.LeftMouseButtonUp(location);
-		}
-		public void RightMouseButtonUp(Point location) {
-			_state.RightMouseButtonUp(location);
-		}
-		public void RightMouseButtonDown(Point location) {
-			_state.RightMouseButtonDown(location);
-		}
-		public void MouseMoved(Point location) {
-			_state.MouseMoved(location);
-		}
 		public void Draw(DrawingContext context) {
-			_state.Draw(context);
+			State.Draw(context);
 		}
 
-		private EditToolState _state = null;
-		private GraphView _graph = null;
+
+		EditToolState _state;
+		GraphView _graph = null;
+		Mouse _mouse;
 	}
 }

@@ -18,7 +18,7 @@ namespace UILogicLibrary {
 			context.DrawRectangle(rect);
 		}
 
-		public override void LeftMouseButtonUp(Point location) {
+		public override void MouseLeftDepressed(Point location) {
 			CurrentState = new DefaultState(EditTool);
 		}
 

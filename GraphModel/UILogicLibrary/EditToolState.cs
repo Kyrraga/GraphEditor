@@ -12,10 +12,10 @@ namespace UILogicLibrary {
 			this._editTool = editTool;
 		}
 
-		public virtual void LeftMouseButtonDown(Point location) { }
-		public virtual void LeftMouseButtonUp(Point location) { }
-		public virtual void RightMouseButtonDown(Point location) { }
-		public virtual void RightMouseButtonUp(Point location) { }
+		public virtual void MouseLeftClick(Point location) { }
+		public virtual void MouseLeftPressed(Point location) { }
+		public virtual void MouseLeftDepressed(Point location) { }
+		public virtual void MouseRightClick(Point location) { }
 		public virtual void MouseMoved(Point location) { }
 		public virtual void Draw(DrawingContext context) { }
 

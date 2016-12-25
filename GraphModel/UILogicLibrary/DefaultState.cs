@@ -8,7 +8,7 @@ namespace UILogicLibrary {
 	public class DefaultState : EditToolState {
 		public DefaultState(EditTool tool) : base(tool) { }
 
-		public override void LeftMouseButtonDown(Point location) {
+		public override void MouseLeftPressed(Point location) {
 			CurrentState = new SelectionState(EditTool, location);
 		}
 	}

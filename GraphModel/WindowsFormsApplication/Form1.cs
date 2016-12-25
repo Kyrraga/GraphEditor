@@ -42,11 +42,33 @@ namespace WindowsFormsApplication {
 		private EditTool _editTool = null;
 
 		private void Form1_Load(object sender, EventArgs e) {
-			graphBox.MouseDown += graphBox_MouseDown;
-			graphBox.MouseMove += graphBox_MouseMove;
-			graphBox.MouseUp   += graphBox_MouseUp;
+			Mouse mouse = new Mouse();
+			graphBox.MouseDown += (s, a) => {
+				switch (a.Button) {
+					case MouseButtons.Left:
+						mouse.LeftButtonDown(a.Location);
+						break;
+					case MouseButtons.Right:
+						mouse.RightButtonDown(a.Location);
+						break;
+				}
+			};
+			graphBox.MouseUp += (s, a) => {
+				switch (a.Button) {
+					case MouseButtons.Left:
+						mouse.LeftButtonUp(a.Location);
+						break;
+					case MouseButtons.Right:
+						mouse.RightButtonUp(a.Location);
+						break;
+				}
+			};
+			graphBox.MouseMove += (s, a) => {
+				mouse.MouseMoved(a.Location);
+				graphBox.Invalidate();
+			};
 			graphBox.Paint += graphBox_Draw;
-			_editTool = new EditTool();
+			_editTool = new EditTool(mouse);
 		}
 
 		// buttons
@@ -67,16 +89,6 @@ namespace WindowsFormsApplication {
 		}
 		
 		// graphBox events
-		private void graphBox_MouseDown(object sender, MouseEventArgs e) {
-			if (e.Button == MouseButtons.Left) {
-				_editTool.LeftMouseButtonDown(e.Location);
-			}
-		}
-		private void graphBox_MouseUp(object sender, MouseEventArgs e) {
-			if (e.Button == MouseButtons.Left) {
-				_editTool.LeftMouseButtonUp(e.Location);
-			}
-		}
 		private void graphBox_MouseMove(object sender, MouseEventArgs e) {
 			graphBox.Invalidate();
 		}
