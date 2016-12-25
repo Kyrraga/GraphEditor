@@ -41,6 +41,7 @@ namespace UILogicLibrary {
 		public void LeftButtonUp(Point point) {
 			Left = false;
 			if (_timer.Enabled) {
+				_timer.Stop();
 				LeftClick(point);
 			}
 			else {
@@ -55,6 +56,11 @@ namespace UILogicLibrary {
 			RightClick(point);
 		}
 		public void MouseMoved(Point point) {
+			if (point == _lastPoint) {
+				return;
+			}
+			_lastPoint = point;
+
 			if (_timer.Enabled) {
 				Debug.Assert(Left == true);
 				_timer.Stop();
@@ -74,6 +80,7 @@ namespace UILogicLibrary {
 		Timer _timer;
 		double _delay = 300;
 		Point _startPoint;
+		Point _lastPoint = new Point(-1000, -1000);
 
 		bool _left = false;
 		bool _right = false;

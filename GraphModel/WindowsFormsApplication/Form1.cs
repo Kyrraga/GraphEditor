@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using GraphModelLibrary;
+using ExtensionMethods;
 using UILogicLibrary;
 
 namespace WindowsFormsApplication {
@@ -44,27 +45,30 @@ namespace WindowsFormsApplication {
 		private void Form1_Load(object sender, EventArgs e) {
 			Mouse mouse = new Mouse();
 			graphBox.MouseDown += (s, a) => {
+				Point location = a.Location;
 				switch (a.Button) {
 					case MouseButtons.Left:
-						mouse.LeftButtonDown(a.Location);
+						mouse.LeftButtonDown(location);
 						break;
 					case MouseButtons.Right:
-						mouse.RightButtonDown(a.Location);
+						mouse.RightButtonDown(location);
 						break;
 				}
 			};
 			graphBox.MouseUp += (s, a) => {
+				Point location = a.Location;
 				switch (a.Button) {
 					case MouseButtons.Left:
-						mouse.LeftButtonUp(a.Location);
+						mouse.LeftButtonUp(location);
 						break;
 					case MouseButtons.Right:
-						mouse.RightButtonUp(a.Location);
+						mouse.RightButtonUp(location);
 						break;
 				}
 			};
 			graphBox.MouseMove += (s, a) => {
-				mouse.MouseMoved(a.Location);
+				Point location = a.Location;
+				mouse.MouseMoved(location);
 				graphBox.Invalidate();
 			};
 			graphBox.Paint += graphBox_Draw;
@@ -103,6 +107,10 @@ namespace WindowsFormsApplication {
 			_editTool.Draw(context);
 
 			debugLabel.Text = _editTool.State.ToString();
+		}
+
+		Point ConvertPoint(Point p, Control c1, Control c2) {
+			return c2.PointToClient(c1.PointToScreen(p));
 		}
 	}
 }
