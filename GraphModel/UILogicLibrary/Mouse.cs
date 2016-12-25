@@ -11,6 +11,7 @@ namespace UILogicLibrary {
 	public class Mouse {
 		public Mouse() {
 			_timer = new Timer();
+			_timer.AutoReset = false;
 			_timer.Elapsed += OnTimerElapsed;
 		}
 
