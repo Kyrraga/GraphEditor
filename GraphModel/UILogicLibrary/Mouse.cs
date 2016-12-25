@@ -38,14 +38,6 @@ namespace UILogicLibrary {
 			_startPoint = point;
 			_timer.Start(_delay);
 		}
-		public void MouseMoved(Point point) {
-			if (_timer.Enabled) {
-				Debug.Assert(Left == true);
-				_timer.Stop();
-				LeftPressed(_startPoint);
-			}
-			Moved(point);
-		}
 		public void LeftButtonUp(Point point) {
 			Left = false;
 			if (_timer.Enabled) {
@@ -61,6 +53,14 @@ namespace UILogicLibrary {
 		public void RightButtonUp(Point point) {
 			Right = false;
 			RightClick(point);
+		}
+		public void MouseMoved(Point point) {
+			if (_timer.Enabled) {
+				Debug.Assert(Left == true);
+				_timer.Stop();
+				LeftPressed(_startPoint);
+			}
+			Moved(point);
 		}
 
 		public event MouseEventDelegate LeftClick;

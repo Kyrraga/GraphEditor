@@ -25,6 +25,11 @@ namespace UILogicLibrary {
 			}
 		}
 
+		public Graph Graph {
+			get {
+				return _graph;
+			}
+		}
 		
 
 		Graph _graph;

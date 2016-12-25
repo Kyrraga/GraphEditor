@@ -6,7 +6,11 @@ using System.Text;
 
 namespace GraphModelLibrary {
 	public class NodeModel : Node {
-		public NodeModel(NodeColor color = new NodeColor(), Point location = new Point()) : base() {
+		public NodeModel(NodeColor color = _defaultColor) :base() {
+			this.Color = color;
+			this.Location = _defaultLocation;
+		}
+		public NodeModel(Point location, NodeColor color = _defaultColor) : base() {
 			this.Color = color;
 			this.Location = location;
 		}
@@ -17,5 +21,8 @@ namespace GraphModelLibrary {
 		public Point Location {
 			get; set;
 		}
+
+		const NodeColor _defaultColor = NodeColor.Magenta;
+		readonly Point _defaultLocation = Point.Empty;
 	}
 }
