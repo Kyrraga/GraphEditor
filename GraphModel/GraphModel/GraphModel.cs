@@ -1,13 +1,15 @@
 ﻿using System;
-using System.IO;
-using System.Text;
-using System.Linq;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Text;
 using ExtensionMethods;
 
-namespace GraphModelLibrary
-{
-	public partial class GraphModel {
+
+namespace GraphModelLibrary {
+	public class GraphModel {
+
 		/// <summary>
 		/// Загружает граф из файла.
 		/// </summary>
@@ -15,7 +17,7 @@ namespace GraphModelLibrary
 		/// <returns>Объект графа.</returns>
 		public static GraphModel Load(string path) {
 			string text = File.ReadAllText(path);
-			return GraphModel.Parse(text);
+			return GraphModel.ParseA1(text);
 		}
 
 		/// <summary>
@@ -23,7 +25,7 @@ namespace GraphModelLibrary
 		/// </summary>
 		/// <param name="str">Строка с описанием графа.</param>
 		/// <returns>Объект графа.</returns>
-		public static GraphModel Parse(string str) {
+		public static GraphModel ParseA1(string str) {
 			// разобьём на строки и уберём пустые, оставшиеся сложим в очередь
 			char[] separators = { '\r', '\n' };
 			Queue<string> queue = new Queue<string>(str.Split(separators).Where(s => s != ""));
@@ -80,12 +82,12 @@ namespace GraphModelLibrary
 
 				return new GraphModel(n, adjacencyMatrix, nodeColors, edgeColors, text);
 			}
-			catch (Exception e){
+			catch (Exception e) {
 				throw new InvalidDataException("Неправильный формат входных данных", e);
 			}
 		}
 
-		public IGraph Graph {
+		public Graph Graph {
 			get {
 				return _graph;
 			}
@@ -100,8 +102,8 @@ namespace GraphModelLibrary
 		}
 
 
-		private readonly IGraph _graph;
-		private string _text;
+		readonly Graph _graph;
+		string _text;
 
 		/// <summary>
 		/// Внутренний конструктор модели графа.
@@ -121,17 +123,20 @@ namespace GraphModelLibrary
 
 			// create graph and nodes
 			_graph = new Graph();
-			INode[] nodes = new Node[n];
+			NodeModel[] nodes = new NodeModel[n];
 			for (int i = 0; i < nodes.Length; ++i) {
-				nodes[i] = _graph.AddNode();
+				Point location = IndexToPoint(n, i);
+				nodes[i] = new NodeModel(location);
+				_graph.Add(nodes[i]);
 			}
-			
+
 			// create edges
 			for (int i = 0; i < matrix.GetLength(0); ++i) {
 				for (int j = 0; j < matrix.GetLength(1); ++j) {
 					int value = matrix[i, j];
 					if (value != 0) {
-						Edge edge = (Edge)_graph.AddEdge(nodes[i], nodes[j]);
+						//Edge2 edge = _graph.AddEdge(nodes[i], nodes[j]) as Edge2;
+						EdgeModel edge = new EdgeModel(nodes[i], nodes[j]);
 						edge.Value = value.ToString();
 					}
 				}
@@ -148,7 +153,10 @@ namespace GraphModelLibrary
 			if (edgeColors != null) {
 				for (int i = 0; i < nodes.Length; ++i) {
 					for (int j = 0; j < nodes.Length; ++j) {
-						IEdge edge = nodes[i].GetOutgoingEdges().FirstOrDefault((e) => (e.NodeTo == nodes[j]));
+						EdgeModel edge = nodes[i]
+							.GetOutgoingEdges()
+							.FirstOrDefault((e) => (e.To == nodes[j]))
+							as EdgeModel;
 						if (edge != null) {
 							edge.Color = edgeColors[i, j];
 						}
@@ -164,8 +172,24 @@ namespace GraphModelLibrary
 		/// </summary>
 		/// <param name="str">Строка, содержащая числа, разбитые пробелами.</param>
 		/// <returns>Массив чисел.</returns>
-		private static int[] StringToIntArray(string str) {
+		static int[] StringToIntArray(string str) {
 			return str.Split().Map(x => int.Parse(x));
+		}
+
+		/// <summary>
+		/// Вычисляет координаты точки на окружности.
+		/// </summary>
+		/// <param name="n">Количество точек.</param>
+		/// <param name="i">Номер точки.</param>
+		/// <returns></returns>
+		private Point IndexToPoint(int n, int i) {
+			Point middle = new Point(400, 200);
+			double angle = Math.PI * 2 * i / n;
+			int radius = 50;
+
+			float x = middle.X + (float)Math.Cos(angle) * radius;
+			float y = middle.Y + (float)Math.Sin(angle) * radius;
+			return Point.Round(new PointF(x, y));
 		}
 	}
 }

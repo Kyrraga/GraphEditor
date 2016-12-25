@@ -16,7 +16,7 @@ namespace UnitTestProject {
 1 0 1 0 1
 1 1 1 1 0";
 
-			GraphModel model = GraphModel.Parse(text);
+			GraphModel model = GraphModel.ParseA1(text);
 		}
 
 		[TestMethod]
@@ -32,7 +32,7 @@ Text:
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
 Morbi elementum lorem et libero bibendum, ac egestas urna accumsan.";
 
-			GraphModel model = GraphModel.Parse(text);
+			GraphModel model = GraphModel.ParseA1(text);
 		}
 
 		[TestMethod]
@@ -53,24 +53,24 @@ Text:
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
 Morbi elementum lorem et libero bibendum, ac egestas urna accumsan.";
 
-			GraphModel model = GraphModel.Parse(text);
+			GraphModel model = GraphModel.ParseA1(text);
 		}
 
 		[TestMethod]
 		public void Loading1() {
-			string path = @"C:\Users\Ruslan\Desktop\MAI\Диплом\GraphEditor\Examples\Graph files\exampleA1-1.txt";
+			string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Examples", @"exampleA1-1.txt");
 			GraphModel model = GraphModel.Load(path);
 		}
 
 		[TestMethod]
 		public void Loading2() {
-			string path = @"C:\Users\Ruslan\Desktop\MAI\Диплом\GraphEditor\Examples\Graph files\exampleA1-2.txt";
+			string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Examples", @"exampleA1-2.txt");
 			GraphModel model = GraphModel.Load(path);
 		}
 
 		[TestMethod]
 		public void Loading3() {
-			string path = @"C:\Users\Ruslan\Desktop\MAI\Диплом\GraphEditor\Examples\Graph files\exampleA1-3.txt";
+			string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Examples", @"exampleA1-3.txt");
 			GraphModel model = GraphModel.Load(path);
 		}
 	}

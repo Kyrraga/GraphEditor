@@ -1,51 +1,74 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 
 namespace GraphModelLibrary {
-	public interface INode {
-		NodeColor Color { get; set; }
-		IEnumerable<IEdge> GetIncomingEdges();
-		IEnumerable<IEdge> GetOutgoingEdges();
-		IEnumerable<IEdge> GetEdges();
-		IEnumerable<INode> GetAdjacentNodes(INode node);
-		void Delete();
-	}
-
 	public class Node : INode {
-		public IGraph Graph {
-			get {
-				return _graph;
-			} 
-		}
-		public NodeColor Color { get; set; }
-
-		public Node(IGraph graph) {
-			this._graph = graph;
+		public Node() {
+			this._incomingEdges = new HashSet<Edge>();
+			this._outgoingEdges = new HashSet<Edge>();
 		}
 
-		public static INode Create(IGraph graph) {
-			return graph.AddNode();
+		public void AddIncomingEdge(Edge edge) {
+			if (edge.To != this) {
+				throw new InvalidOperationException();
+			}
+
+			_incomingEdges.Add(edge);
+		}
+		public void AddOutgoingEdge(Edge edge) {
+			if (edge.From != this) {
+				throw new InvalidOperationException();
+			}
+
+			_outgoingEdges.Add(edge);
+		}
+		public void RemoveIncomingEdge(Edge edge) {
+			if (edge.To != this) {
+				throw new InvalidOperationException();
+			}
+
+			bool success = _incomingEdges.Remove(edge);
+			if (!success) {
+				throw new InvalidOperationException();
+			}
+		}
+		public void RemoveOutgoingEdge(Edge edge) {
+			if (edge.From != this) {
+				throw new InvalidOperationException();
+			}
+
+			bool success = _outgoingEdges.Remove(edge);
+			if (!success) {
+				throw new InvalidOperationException();
+			}
 		}
 
 		public IEnumerable<IEdge> GetIncomingEdges() {
-			return Graph.GetIncomingEdges(this);
+			return _incomingEdges as IEnumerable<IEdge>;
+		}
+		public IEnumerable<INode> GetIncomingNodes() {
+			return _incomingEdges.Select((edge) => (edge.From));
 		}
 		public IEnumerable<IEdge> GetOutgoingEdges() {
-			return Graph.GetOutgoingEdges(this);
+			return _outgoingEdges as IEnumerable<IEdge>;
 		}
-		public IEnumerable<IEdge> GetEdges() {
-			return Graph.GetEdges(this);
-		}
-		public IEnumerable<INode> GetAdjacentNodes(INode node) {
-			return Graph.GetAdjacentNodes(this);
-		}
-		public void Delete() {
-			Graph.Remove(this);
+		public IEnumerable<INode> GetOutgoingNodes() {
+			return _outgoingEdges.Select((edge) => (edge.To));
 		}
 
-		private readonly IGraph _graph;
+		public void Delete() {
+			while (_incomingEdges.Count > 0) {
+				_incomingEdges.First().Delete();
+			}
+			while (_outgoingEdges.Count > 0) {
+				_outgoingEdges.First().Delete();
+			}
+		}
+
+		readonly HashSet<Edge> _incomingEdges;
+		readonly HashSet<Edge> _outgoingEdges;
 	}
 }
