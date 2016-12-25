@@ -13,9 +13,13 @@ namespace UILogicLibrary {
 		}
 
 		public virtual void MouseLeftClick(Point location) { }
+		public virtual void MouseLeftClick(NodeModel node) { }
 		public virtual void MouseLeftPressed(Point location) { }
+		public virtual void MouseLeftPressed(NodeModel node) { }
 		public virtual void MouseLeftDepressed(Point location) { }
+		public virtual void MouseLeftDepressed(NodeModel node) { }
 		public virtual void MouseRightClick(Point location) { }
+		public virtual void MouseRightClick(NodeModel node) { }
 		public virtual void MouseMoved(Point location) { }
 		public virtual void Draw(DrawingContext context) { }
 

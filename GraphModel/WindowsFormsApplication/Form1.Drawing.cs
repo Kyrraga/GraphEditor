@@ -31,7 +31,7 @@ namespace WindowsFormsApplication {
 				NodeModel node = (NodeModel)pair.Value;
 				Point point = node.Location;
 				Color color = convertColor(node.Color);
-				context.FillCircle(point, 10, new SolidBrush(color));
+				context.FillCircle(point, GraphView.NodeRadius, new SolidBrush(color));
 			}
 		}
 
