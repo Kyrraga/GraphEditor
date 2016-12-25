@@ -48,7 +48,7 @@ namespace UILogicLibrary
 		}
 
 		void MouseLeftClick(Point p) {
-			Object o = GraphView.FindClicked(p);
+			Object o = GraphView?.FindClicked(p);
 
 			NodeModel node = o as NodeModel;
 			if (node != null) {
@@ -59,7 +59,7 @@ namespace UILogicLibrary
 			State.MouseLeftClick(p);
 		}
 		void MouseRightClick(Point p) {
-			Object o = GraphView.FindClicked(p);
+			Object o = GraphView?.FindClicked(p);
 
 			NodeModel node = o as NodeModel;
 			if (node != null) {
@@ -70,7 +70,7 @@ namespace UILogicLibrary
 			State.MouseRightClick(p);
 		}
 		void MouseLeftPressed(Point p) {
-			Object o = GraphView.FindClicked(p);
+			Object o = GraphView?.FindClicked(p);
 
 			NodeModel node = o as NodeModel;
 			if (node != null) {
@@ -81,7 +81,7 @@ namespace UILogicLibrary
 			State.MouseLeftPressed(p);
 		}
 		void MouseLeftDepressed(Point p) {
-			Object o = GraphView.FindClicked(p);
+			Object o = GraphView?.FindClicked(p);
 
 			NodeModel node = o as NodeModel;
 			if (node != null) {
