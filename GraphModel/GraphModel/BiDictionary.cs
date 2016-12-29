@@ -14,10 +14,6 @@ namespace CustomDataStructures {
 			this._dictionary = new Dictionary<TFirst, TSecond>();
 			this._mirror = new BiDictionary<TSecond, TFirst>(this);
 		}
-		public BiDictionary(BiDictionary<TSecond, TFirst> mirror) {
-			this._dictionary = new Dictionary<TFirst, TSecond>();
-			this._mirror = mirror;
-		}
 
 		public IBiDictionary<TSecond, TFirst> Mirror {
 			get {
@@ -92,11 +88,17 @@ namespace CustomDataStructures {
 			return _dictionary.GetEnumerator();
 		}
 
+
+		BiDictionary(BiDictionary<TSecond, TFirst> mirror) {
+			this._dictionary = new Dictionary<TFirst, TSecond>();
+			this._mirror = mirror;
+		}
+
+		Dictionary<TFirst, TSecond> _dictionary;
+		BiDictionary<TSecond, TFirst> _mirror;
+
 		IEnumerator IEnumerable.GetEnumerator() {
 			return _dictionary.GetEnumerator();
 		}
-		
-		Dictionary<TFirst, TSecond> _dictionary;
-		BiDictionary<TSecond, TFirst> _mirror;
 	}
 }
