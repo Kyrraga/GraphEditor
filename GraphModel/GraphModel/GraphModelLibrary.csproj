@@ -63,6 +63,7 @@
     <Compile Include="Edge.cs" />
     <Compile Include="Graph.cs" />
     <Compile Include="GraphModel.cs" />
+    <Compile Include="IKeyValueCollectionExtension.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="NodeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
