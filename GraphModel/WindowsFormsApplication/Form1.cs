@@ -25,6 +25,7 @@ namespace WindowsFormsApplication {
 			private set {
 				_graphModel = value;
 				GraphView = new GraphView(_graphModel.Graph);
+				GraphModelChanged();
 			}
 		}
 		public GraphView GraphView {
@@ -36,6 +37,9 @@ namespace WindowsFormsApplication {
 				_editTool.GraphView = _graphView;
 			}
 		}
+
+		public event MyDelegate GraphModelChanged;
+		public delegate void MyDelegate();
 
 		protected override CreateParams CreateParams {
 			get {
@@ -51,7 +55,9 @@ namespace WindowsFormsApplication {
 		private Timer _timer;
 
 		private void Form1_Load(object sender, EventArgs e) {
-			var mouse = new UILogicLibrary.Mouse();
+			GraphModelChanged += () => { saveButtonLabel.Text = ""; };
+
+			var mouse = new Mouse();
 			graphBox.MouseDown += (s, a) => {
 				Point location = a.Location;
 				switch (a.Button) {
@@ -105,6 +111,19 @@ namespace WindowsFormsApplication {
 		private void loadExampleButton_Click(object sender, EventArgs e) {
 			string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Examples", @"exampleA1-4.txt");
 			GraphModel = GraphModel.Load(path);
+		}
+		private void saveButton_Click(object sender, EventArgs e) {
+			if (GraphModel == null) {
+				saveButtonLabel.Text = "Сначала нужно открыть граф";
+			}
+			else {
+				SaveFileDialog saveFileDialog = new SaveFileDialog();
+				DialogResult result = saveFileDialog.ShowDialog();
+				if (result == DialogResult.OK) {
+					string path = saveFileDialog.FileName;
+					GraphModel.Save(path);
+				}
+			}
 		}
 
 		private void graphBox_Draw(object sender, PaintEventArgs e) {

@@ -27,6 +27,8 @@
 			this.graphBox = new System.Windows.Forms.GroupBox();
 			this.loadExampleButton = new System.Windows.Forms.Button();
 			this.debugLabel = new System.Windows.Forms.Label();
+			this.saveButton = new System.Windows.Forms.Button();
+			this.saveButtonLabel = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// loadGraphButton
@@ -60,17 +62,37 @@
 			// debugLabel
 			// 
 			this.debugLabel.AutoSize = true;
-			this.debugLabel.Location = new System.Drawing.Point(500, 55);
+			this.debugLabel.Location = new System.Drawing.Point(591, 452);
 			this.debugLabel.Name = "debugLabel";
 			this.debugLabel.Size = new System.Drawing.Size(74, 13);
 			this.debugLabel.TabIndex = 4;
 			this.debugLabel.Text = "<debug label>";
+			// 
+			// saveButton
+			// 
+			this.saveButton.Location = new System.Drawing.Point(195, 26);
+			this.saveButton.Name = "saveButton";
+			this.saveButton.Size = new System.Drawing.Size(75, 23);
+			this.saveButton.TabIndex = 5;
+			this.saveButton.Text = "Сохранить";
+			this.saveButton.UseVisualStyleBackColor = true;
+			this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+			// 
+			// saveButtonLabel
+			// 
+			this.saveButtonLabel.AutoSize = true;
+			this.saveButtonLabel.Location = new System.Drawing.Point(277, 35);
+			this.saveButtonLabel.Name = "saveButtonLabel";
+			this.saveButtonLabel.Size = new System.Drawing.Size(0, 13);
+			this.saveButtonLabel.TabIndex = 6;
 			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(887, 474);
+			this.Controls.Add(this.saveButtonLabel);
+			this.Controls.Add(this.saveButton);
 			this.Controls.Add(this.debugLabel);
 			this.Controls.Add(this.loadExampleButton);
 			this.Controls.Add(this.graphBox);
@@ -90,6 +112,8 @@
 		private System.Windows.Forms.GroupBox graphBox;
 		private System.Windows.Forms.Button loadExampleButton;
 		private System.Windows.Forms.Label debugLabel;
+		private System.Windows.Forms.Button saveButton;
+		private System.Windows.Forms.Label saveButtonLabel;
 	}
 }
 

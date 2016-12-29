@@ -109,6 +109,9 @@ namespace GraphModelLibrary {
 					if (edge != null) {
 						matrix[i][j] = edge.Value;
 					}
+					else {
+						matrix[i][j] = "0";
+					}
 				}
 			}
 			for (int i = 0; i < N; ++i) {
