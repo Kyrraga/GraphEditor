@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 namespace GraphModelLibrary {
-	public class Edge : IEdge {
+	public class Edge {
 		public Edge(Node from, Node to) {
 			this._from = from;
 			this._to = to;
@@ -13,12 +13,12 @@ namespace GraphModelLibrary {
 			_to.AddIncomingEdge(this);
 		}
 
-		public INode From {
+		public Node From {
 			get {
 				return _from;
 			}
 		}
-		public INode To {
+		public Node To {
 			get {
 				return _to;
 			}

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 
 namespace GraphModelLibrary {
-	public class Node : INode {
+	public class Node {
 		public Node() {
 			this._incomingEdges = new HashSet<Edge>();
 			this._outgoingEdges = new HashSet<Edge>();
@@ -46,16 +46,16 @@ namespace GraphModelLibrary {
 			}
 		}
 
-		public IEnumerable<IEdge> GetIncomingEdges() {
-			return _incomingEdges as IEnumerable<IEdge>;
+		public IEnumerable<Edge> GetIncomingEdges() {
+			return _incomingEdges as IEnumerable<Edge>;
 		}
-		public IEnumerable<INode> GetIncomingNodes() {
+		public IEnumerable<Node> GetIncomingNodes() {
 			return _incomingEdges.Select((edge) => (edge.From));
 		}
-		public IEnumerable<IEdge> GetOutgoingEdges() {
-			return _outgoingEdges as IEnumerable<IEdge>;
+		public IEnumerable<Edge> GetOutgoingEdges() {
+			return _outgoingEdges as IEnumerable<Edge>;
 		}
-		public IEnumerable<INode> GetOutgoingNodes() {
+		public IEnumerable<Node> GetOutgoingNodes() {
 			return _outgoingEdges.Select((edge) => (edge.To));
 		}
 
