@@ -29,10 +29,10 @@ namespace UILogicLibrary {
 		void Depressed(Point point) {
 			Rectangle rect = SelectionRectangle(point);
 			if (EditTool.Keyboard.IsKeyDown(Keyboard.Key.Shift)) {
-				EditTool.AddSelected(rect);
+				EditTool.Selection.Add(rect);
 			}
 			else {
-				EditTool.SetSelected(rect);
+				EditTool.Selection.Add(rect);
 			}
 			CurrentState = new DefaultState(EditTool);
 		}

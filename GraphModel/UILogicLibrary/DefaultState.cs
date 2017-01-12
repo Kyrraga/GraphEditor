@@ -34,12 +34,12 @@ namespace UILogicLibrary {
 		}
 
 		public override void MouseRightClick(Point location) {
-			EditTool.ClearSelected();
+			EditTool.Selection.Clear();
 		}
 
 		public override void KeyPressed(Keyboard.Key key) {
 			if (key == Keyboard.Key.Delete) {
-				EditTool.DeleteSelected();
+				EditTool.Selection.Delete();
 			}
 		}
 	}
