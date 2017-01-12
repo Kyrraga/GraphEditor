@@ -46,13 +46,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E5C631BF9738B73273ECDC33B3DAE453"
+        "OwnerKey" = "8:_90FAFB85DC7B81621A2A7DDE0D186DD3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_90FAFB85DC7B81621A2A7DDE0D186DD3"
+        "OwnerKey" = "8:_E5C631BF9738B73273ECDC33B3DAE453"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -80,6 +80,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
             }
         }
         "Release"
@@ -104,6 +112,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
             }
         }
     }
@@ -141,11 +157,6 @@
             "AssemblyAsmDisplayName" = "8:GraphModelLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_90FAFB85DC7B81621A2A7DDE0D186DD3"
-                    {
-                    "Name" = "8:GraphModelLibrary.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:GraphModelLibrary.dll"
             "TargetName" = "8:"
@@ -172,11 +183,6 @@
             "AssemblyAsmDisplayName" = "8:UILogicLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_E5C631BF9738B73273ECDC33B3DAE453"
-                    {
-                    "Name" = "8:UILogicLibrary.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:UILogicLibrary.dll"
             "TargetName" = "8:"
@@ -252,15 +258,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:GraphEditor"
-        "ProductCode" = "8:{244F26D0-EBDB-43E3-89B0-3EF26E6317D3}"
-        "PackageCode" = "8:{93591F7D-0172-4377-91F2-7889E87A571B}"
+        "ProductCode" = "8:{A083D74A-0D04-4EAC-A889-8BF61FA3E6F4}"
+        "PackageCode" = "8:{EEA24085-A2AA-4A61-8F43-9D8B711504B4}"
         "UpgradeCode" = "8:{44FBDE23-83A5-4B49-936B-19C370A213EC}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:0.1.13"
+        "ProductVersion" = "8:0.1.14"
         "Manufacturer" = "8:GraphEditorTeam"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
