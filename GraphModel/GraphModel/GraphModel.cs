@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using ExtensionMethods;
+using CustomDataStructures;
 
 
 namespace GraphModelLibrary {
@@ -85,6 +86,68 @@ namespace GraphModelLibrary {
 			catch (Exception e) {
 				throw new InvalidDataException("Неправильный формат входных данных", e);
 			}
+		}
+
+		public string[] SerializeA1() {
+			List<string> text = new List<string>();
+
+			int N = Graph.Count;
+			text.Add(N.ToString());
+
+			BiDictionary<int, NodeModel> nodes = new BiDictionary<int, NodeModel>();
+			foreach (NodeModel node in Graph) {
+				nodes[nodes.Count] = node;
+			}
+
+			string[][] matrix = new string[N][];
+			for (int i = 0; i < N; ++i) {
+				NodeModel node1 = nodes[i];
+				matrix[i] = new string[N];
+				for (int j = 0; j < N; ++j) {
+					NodeModel node2 = nodes[j];
+					EdgeModel edge = (EdgeModel)(node1.GetOutgoingEdges().FirstOrDefault(e => (e.To == node2)));
+					if (edge != null) {
+						matrix[i][j] = edge.Value;
+					}
+					else {
+						matrix[i][j] = "0";
+					}
+				}
+			}
+			for (int i = 0; i < N; ++i) {
+				text.Add(string.Join(" ", matrix[i]));
+			}
+
+			text.Add("Node colors:");
+			string[] colors = new string[N];
+			for (int i = 0; i < N; ++i) {
+				colors[i] = ((int)(nodes[i].Color)).ToString();
+			}
+			text.Add(string.Join(" ", colors));
+
+			text.Add("Edge colors:");
+			var nodeIndex = nodes.Mirror;
+			for (int i = 0; i < N; ++i) {
+				NodeModel node1 = nodes[i];
+				foreach (EdgeModel edge in node1.GetOutgoingEdges()) {
+					NodeModel node2 = (NodeModel)edge.To;
+					int j = nodeIndex[node2];
+					string str = string.Format("{0} {1} {2}", i, j, (int)edge.Color);
+					text.Add(str);
+				}
+			}
+			text.Add("-1");
+
+			if (_text != null && _text != "") {
+				text.Add("Text:");
+				text.AddRange(_text.Split('\n', '\r'));
+			}
+
+			return text.ToArray();
+		}
+
+		public void Save(string path) {
+			File.WriteAllLines(path, SerializeA1());
 		}
 
 		public Graph Graph {

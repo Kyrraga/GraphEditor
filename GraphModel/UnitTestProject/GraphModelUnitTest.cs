@@ -73,5 +73,26 @@ Morbi elementum lorem et libero bibendum, ac egestas urna accumsan.";
 			string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Examples", @"exampleA1-3.txt");
 			GraphModel model = GraphModel.Load(path);
 		}
+
+		[TestMethod]
+		public void Serializing1() {
+			string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Examples", @"exampleA1-3.txt");
+			GraphModel model = GraphModel.Load(path);
+			string[] result = model.SerializeA1();
+		}
+
+		[TestMethod]
+		public void Saving1() {
+			string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Examples", @"exampleA1-3.txt");
+			GraphModel model = GraphModel.Load(path);
+			string savePath = @"~tempfile.txt";
+            model.Save(savePath);
+			try {
+				GraphModel model2 = GraphModel.Load(savePath);
+			}
+			finally {
+				File.Delete(savePath);
+			}
+		}
 	}
 }

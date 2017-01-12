@@ -15,6 +15,10 @@ namespace UILogicLibrary {
 			context.DrawArrow(_start.Location, context.MousePosition);
 		}
 
+		public override void MouseLeftClick(Point location) {
+			CurrentState = new DefaultState(EditTool);
+		}
+
 		public override void MouseLeftClick(NodeModel node) {
 			EdgeModel edge = new EdgeModel(_start, node);
 			_start.AddOutgoingEdge(edge);
