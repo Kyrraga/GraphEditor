@@ -52,7 +52,6 @@ namespace WindowsFormsApplication {
 		private GraphModel _graphModel = null;
 		private GraphView _graphView = null;
 		private EditTool _editTool = null;
-		private Timer _timer;
 
 		private void Form1_Load(object sender, EventArgs e) {
 			GraphModelChanged += () => { saveButtonLabel.Text = ""; };
@@ -92,11 +91,6 @@ namespace WindowsFormsApplication {
 
 			
 			graphBox.Paint += graphBox_Draw;
-
-			_timer = new Timer();
-			_timer.Interval = 1000 / 30;
-			_timer.Tick += (s, h) => graphBox.Invalidate();
-			_timer.Start();
 		}
 
 		// buttons
