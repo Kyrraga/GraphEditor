@@ -48,8 +48,8 @@ namespace GraphModelLibrary {
 					return new GraphModel(n, adjacencyMatrix);
 				}
 
-				NodeColor[] nodeColors = null;
-				NodeColor[,] edgeColors = null;
+				Color[] nodeColors = null;
+				Color[,] edgeColors = null;
 				string text = null;
 				while (queue.Count != 0) {
 					string line = queue.Dequeue();
@@ -58,15 +58,15 @@ namespace GraphModelLibrary {
 					switch (line) {
 						case "Node colors:":
 							numbers = StringToIntArray(queue.Dequeue());
-							nodeColors = numbers.Map(x => (NodeColor)x);
+							nodeColors = numbers.Map(x => IntToColor[x]);
 							break;
 						case "Edge colors:":
-							edgeColors = new NodeColor[n, n];
+							edgeColors = new Color[n, n];
 
 							line = queue.Dequeue();
 							while (line != "-1") {
 								numbers = StringToIntArray(line);
-								edgeColors[numbers[0], numbers[1]] = (NodeColor)numbers[2];
+								edgeColors[numbers[0], numbers[1]] = IntToColor[numbers[2]];
 
 								line = queue.Dequeue();
 							}
@@ -121,7 +121,7 @@ namespace GraphModelLibrary {
 			text.Add("Node colors:");
 			string[] colors = new string[N];
 			for (int i = 0; i < N; ++i) {
-				colors[i] = ((int)(nodes[i].Color)).ToString();
+				colors[i] = ColorToInt[nodes[i].Color].ToString();
 			}
 			text.Add(string.Join(" ", colors));
 
@@ -132,7 +132,7 @@ namespace GraphModelLibrary {
 				foreach (EdgeModel edge in node1.GetOutgoingEdges()) {
 					NodeModel node2 = (NodeModel)edge.To;
 					int j = nodeIndex[node2];
-					string str = string.Format("{0} {1} {2}", i, j, (int)edge.Color);
+					string str = string.Format("{0} {1} {2}", i, j, ColorToInt[edge.Color]);
 					text.Add(str);
 				}
 			}
@@ -165,6 +165,10 @@ namespace GraphModelLibrary {
 		}
 
 
+		static GraphModel() {
+			FillColorToInt();
+		}
+
 		readonly Graph _graph;
 		string _text;
 
@@ -177,12 +181,8 @@ namespace GraphModelLibrary {
 		/// <param name="nodeColors">Цвета вершин.</param>
 		/// <param name="edgeColors">Цвета рёбер.</param>
 		/// <param name="text">Свободный текст.</param>
-		private GraphModel(
-					int n,
-					int[,] matrix,
-					NodeColor[] nodeColors = null,
-					NodeColor[,] edgeColors = null,
-					string text = null) {
+		private GraphModel(int n, int[,] matrix, Color[] nodeColors = null,
+		                       Color[,] edgeColors = null, string text = null) {
 
 			// create graph and nodes
 			_graph = new Graph();
@@ -245,7 +245,7 @@ namespace GraphModelLibrary {
 		/// <param name="n">Количество точек.</param>
 		/// <param name="i">Номер точки.</param>
 		/// <returns></returns>
-		private Point IndexToPoint(int n, int i) {
+		Point IndexToPoint(int n, int i) {
 			Point middle = new Point(400, 200);
 			double angle = Math.PI * 2 * i / n;
 			int radius = 50;
@@ -253,6 +253,40 @@ namespace GraphModelLibrary {
 			float x = middle.X + (float)Math.Cos(angle) * radius;
 			float y = middle.Y + (float)Math.Sin(angle) * radius;
 			return Point.Round(new PointF(x, y));
+		}
+
+		// Статическая таблица цветов
+		static Dictionary<Color, int> ColorToInt;
+		static Color[] IntToColor = {
+			Color.Magenta,
+			Color.Blue,
+			Color.Red,
+			Color.Green,
+			Color.Black,
+			Color.White,
+			Color.Purple,
+			Color.Orange,
+			Color.Yellow,
+			Color.Pink,
+			Color.Turquoise,
+			Color.Gray,
+			Color.Teal,
+			Color.DarkBlue,
+			Color.Violet,
+			Color.Brown
+		};
+
+		/// <summary>
+		/// Заполняет ColorToInt парами, обратными элементам IntToColor
+		/// </summary>
+		static void FillColorToInt() {
+			ColorToInt = new Dictionary<Color, int>();
+			for (int i = 0; i < IntToColor.Length; ++i) {
+				Color color = IntToColor[i];
+				if (color != null) {
+					ColorToInt[color] = i;
+				}
+			}
 		}
 	}
 }

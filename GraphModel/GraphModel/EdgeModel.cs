@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 
@@ -7,7 +8,7 @@ namespace GraphModelLibrary {
 	public class EdgeModel : Edge {
 		public EdgeModel(Node from, Node to) : base(from, to) { }
 
-		public NodeColor Color {
+		public Color Color {
 			get {
 				return _color;
 			}
@@ -24,7 +25,7 @@ namespace GraphModelLibrary {
 			}
 		}
 
-		NodeColor _color = new NodeColor();
+		Color _color = new Color();
 		string _value = "";
 	}
 }

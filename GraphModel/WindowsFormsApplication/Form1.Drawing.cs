@@ -30,7 +30,7 @@ namespace WindowsFormsApplication {
 				int index = (int)pair.Key;
 				NodeModel node = (NodeModel)pair.Value;
 				Point point = node.Location;
-				Color color = convertColor(node.Color);
+				Color color = node.Color;
 				context.FillCircle(point, GraphView.NodeRadius, new SolidBrush(color));
 			}
 		}
@@ -47,12 +47,13 @@ namespace WindowsFormsApplication {
 			foreach (NodeModel node in graph) {
 				foreach (EdgeModel edge in node.GetOutgoingEdges()) {
 					NodeModel node2 = edge.To as NodeModel;
-					Color color = convertColor(edge.Color);
+					Color color = edge.Color;
 					context.DrawArrow(node.Location, node2.Location, color);
 				}
 			}
 		}
 
+		[Obsolete]
 		private Color convertColor(NodeColor color) {
 			switch (color) {
 				case NodeColor.Black:
