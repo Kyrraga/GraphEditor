@@ -24,22 +24,15 @@ namespace UILogicLibrary {
 
 		public override void MouseLeftClick(NodeModel node) {
 			CurrentState = new DrawEdgeState(EditTool, node);
-
-			//if (EditTool.Keyboard.IsKeyDown(Keyboard.Key.Shift)) {
-			//	EditTool.AddSelected(node);
-			//}
-			//else {
-			//	EditTool.SetSelected(node);
-			//}
 		}
 
 		public override void MouseRightClick(Point location) {
-			EditTool.ClearSelected();
+			EditTool.Selection.Clear();
 		}
 
 		public override void KeyPressed(Keyboard.Key key) {
 			if (key == Keyboard.Key.Delete) {
-				EditTool.DeleteSelected();
+				EditTool.Selection.Delete();
 			}
 		}
 	}

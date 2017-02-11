@@ -12,7 +12,7 @@ namespace UILogicLibrary
 
 		public EditTool(Mouse mouse, Keyboard keyboard) {
 			this._state = new EmptyState(this);
-			this._selectedNodes = new HashSet<Node>();
+			this._selectionManager = new Selection(this);
 
 			mouse.LeftClick += (p => MouseLeftClick(p));
 			mouse.RightClick += (p => MouseRightClick(p));
@@ -52,57 +52,20 @@ namespace UILogicLibrary
 				return _keyboard;
 			}
 		}
+		public Selection Selection {
+			get {
+				return _selectionManager;
+			}
+		}
 
 		public void Draw(DrawingContext context) {
 			State.Draw(context);
 			DrawSelected(context);
 		}
 
-		public void AddSelected(ICollection<Node> collection) {
-			foreach (Node node in collection) {
-				_selectedNodes.Add(node);
-			}
-		}
-		public void AddSelected(params Node[] nodes) {
-			foreach (Node node in nodes) {
-				_selectedNodes.Add(node);
-			}
-		}
-		public void AddSelected(Rectangle rect) {
-			var list = new List<Node>();
-			foreach (NodeModel node in GraphView.Graph) {
-				if (rect.Contains(node.Location)) {
-					list.Add(node);
-				}
-			}
-			AddSelected(list);
-		}
-		public void ClearSelected() {
-			_selectedNodes.Clear();
-		}
-		public void DeleteSelected() {
-			foreach (Node node in _selectedNodes) {
-				GraphView.Graph.Remove(node);
-				node.Delete();
-			}
-			_selectedNodes.Clear();
-		}
-        public void SetSelected(ICollection<Node> collection) {
-			ClearSelected();
-			AddSelected(collection);
-		}
-		public void SetSelected(params Node[] nodes) {
-			ClearSelected();
-			AddSelected(nodes);
-		}
-		public void SetSelected(Rectangle rect) {
-			ClearSelected();
-			AddSelected(rect);
-		}
-
 		readonly Mouse _mouse;
 		readonly Keyboard _keyboard;
-		readonly HashSet<Node> _selectedNodes;
+		readonly Selection _selectionManager;
 		GraphView _graph = null;
 		EditToolState _state;
 
@@ -156,7 +119,7 @@ namespace UILogicLibrary
 
 		void DrawSelected(DrawingContext context) {
 			Pen pen = new Pen(Color.DarkBlue, 1);
-			foreach (NodeModel node in _selectedNodes) {
+			foreach (NodeModel node in Selection) {
 				context.DrawCircle(node.Location, GraphView.NodeRadius + 1, pen);
 			}
 		}

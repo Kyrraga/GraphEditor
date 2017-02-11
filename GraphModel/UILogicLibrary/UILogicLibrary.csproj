@@ -51,6 +51,7 @@
     <Compile Include="Keyboard.cs" />
     <Compile Include="Mouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Selection.cs" />
     <Compile Include="SelectionState.cs" />
     <Compile Include="TimerExtension.cs" />
   </ItemGroup>

@@ -46,13 +46,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_90FAFB85DC7B81621A2A7DDE0D186DD3"
+        "OwnerKey" = "8:_E5C631BF9738B73273ECDC33B3DAE453"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E5C631BF9738B73273ECDC33B3DAE453"
+        "OwnerKey" = "8:_90FAFB85DC7B81621A2A7DDE0D186DD3"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -258,15 +258,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:GraphEditor"
-        "ProductCode" = "8:{A083D74A-0D04-4EAC-A889-8BF61FA3E6F4}"
-        "PackageCode" = "8:{EEA24085-A2AA-4A61-8F43-9D8B711504B4}"
+        "ProductCode" = "8:{675BF8F1-6B2F-4A1C-B37D-16752C72288D}"
+        "PackageCode" = "8:{F7DB68BC-DC0A-434C-B81B-53C3048E24AB}"
         "UpgradeCode" = "8:{44FBDE23-83A5-4B49-936B-19C370A213EC}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:0.1.14"
+        "ProductVersion" = "8:0.1.15"
         "Manufacturer" = "8:GraphEditorTeam"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
