@@ -52,45 +52,5 @@ namespace WindowsFormsApplication {
 				}
 			}
 		}
-
-		[Obsolete]
-		private Color convertColor(NodeColor color) {
-			switch (color) {
-				case NodeColor.Black:
-					return Color.Black;
-				case NodeColor.Blue:
-					return Color.Blue;
-				case NodeColor.Brown:
-					return Color.Brown;
-				case NodeColor.Darkblue:
-					return Color.DarkBlue;
-				case NodeColor.Green:
-					return Color.Green;
-				case NodeColor.Grey:
-					return Color.Gray;
-				case NodeColor.Magenta:
-					return Color.Magenta;
-				case NodeColor.Orange:
-					return Color.Orange;
-				case NodeColor.Pink:
-					return Color.Pink;
-				case NodeColor.Purple:
-					return Color.Purple;
-				case NodeColor.Red:
-					return Color.Red;
-				case NodeColor.Teal:
-					return Color.Teal;
-				case NodeColor.Turquoise:
-					return Color.Turquoise;
-				case NodeColor.Violet:
-					return Color.Violet;
-				case NodeColor.White:
-					return Color.White;
-				case NodeColor.Yellow:
-					return Color.Yellow;
-				default:
-					throw new ArgumentException("Unknown color");
-			}
-		}
 	}
 }
