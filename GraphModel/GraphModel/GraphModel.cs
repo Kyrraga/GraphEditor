@@ -62,6 +62,7 @@ namespace GraphModelLibrary {
 							break;
 						case "Edge colors:":
 							edgeColors = new Color[n, n];
+							edgeColors.Fill(_defaultEdgeColor);
 
 							line = queue.Dequeue();
 							while (line != "-1") {
@@ -172,6 +173,8 @@ namespace GraphModelLibrary {
 		readonly Graph _graph;
 		string _text;
 
+		static readonly Color _defaultEdgeColor = Color.Aquamarine;
+
 		/// <summary>
 		/// Внутренний конструктор модели графа.
 		/// Размерности массивов должны совпадать с количеством вершин.
@@ -199,7 +202,7 @@ namespace GraphModelLibrary {
 					int value = matrix[i, j];
 					if (value != 0) {
 						//Edge2 edge = _graph.AddEdge(nodes[i], nodes[j]) as Edge2;
-						EdgeModel edge = new EdgeModel(nodes[i], nodes[j]);
+						EdgeModel edge = new EdgeModel(nodes[i], nodes[j], _defaultEdgeColor);
 						edge.Value = value.ToString();
 					}
 				}

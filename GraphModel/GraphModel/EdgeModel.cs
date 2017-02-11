@@ -6,7 +6,9 @@ using System.Text;
 
 namespace GraphModelLibrary {
 	public class EdgeModel : Edge {
-		public EdgeModel(Node from, Node to) : base(from, to) { }
+		public EdgeModel(Node from, Node to, Color color) : base(from, to) {
+			this._color = color;
+		}
 
 		public Color Color {
 			get {
@@ -25,7 +27,7 @@ namespace GraphModelLibrary {
 			}
 		}
 
-		Color _color = new Color();
+		Color _color;
 		string _value = "";
 	}
 }
