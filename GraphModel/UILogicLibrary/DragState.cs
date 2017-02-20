@@ -6,8 +6,8 @@ using System.Text;
 using GraphModelLibrary;
 
 namespace UILogicLibrary {
-	class DragState : EditToolState{
-		public DragState(EditTool editTool, NodeModel node) : base(editTool) {
+	class DragState : AbstractState{
+		public DragState(EditTool editTool, IHolderState holder, NodeModel node) : base(editTool, holder) {
 			this._node = node;
 		}
 
@@ -26,7 +26,7 @@ namespace UILogicLibrary {
 		NodeModel _node;
 
 		void Depressed() {
-			CurrentState = new DefaultState(EditTool);
+			CurrentState = new DefaultState(EditTool, Holder);
 		}
 	}
 }

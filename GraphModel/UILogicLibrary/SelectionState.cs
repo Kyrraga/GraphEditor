@@ -6,8 +6,8 @@ using System.Text;
 using GraphModelLibrary;
 
 namespace UILogicLibrary {
-	public class SelectionState : EditToolState {
-		public SelectionState(EditTool tool, Point start) : base(tool) {
+	public class SelectionState : AbstractState {
+		public SelectionState(EditTool tool, IHolderState holder, Point start) : base(tool, holder) {
 			this._start = start;
 		}
 
@@ -34,7 +34,7 @@ namespace UILogicLibrary {
 			else {
 				EditTool.Selection.Add(rect);
 			}
-			CurrentState = new DefaultState(EditTool);
+			CurrentState = new DefaultState(EditTool, Holder);
 		}
 
 		Rectangle SelectionRectangle(Point point) {

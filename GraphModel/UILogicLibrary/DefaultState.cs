@@ -6,15 +6,15 @@ using System.Text;
 using GraphModelLibrary;
 
 namespace UILogicLibrary {
-	public class DefaultState : EditToolState {
-		public DefaultState(EditTool tool) : base(tool) { }
+	public class DefaultState : AbstractState {
+		public DefaultState(EditTool tool, IHolderState holder) : base(tool, holder) { }
 
 		public override void MouseLeftPressed(Point location) {
-			CurrentState = new SelectionState(EditTool, location);
+			CurrentState = new SelectionState(EditTool, Holder, location);
 		}
 
 		public override void MouseLeftPressed(NodeModel node) {
-			CurrentState = new DragState(EditTool, node);
+			CurrentState = new DragState(EditTool, Holder, node);
 		}
 
 		public override void MouseLeftClick(Point location) {
@@ -23,7 +23,7 @@ namespace UILogicLibrary {
 		}
 
 		public override void MouseLeftClick(NodeModel node) {
-			CurrentState = new DrawEdgeState(EditTool, node);
+			CurrentState = new DrawEdgeState(EditTool, Holder, node);
 		}
 
 		public override void MouseRightClick(Point location) {

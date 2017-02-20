@@ -7,9 +7,10 @@ using System.Timers;
 using GraphModelLibrary;
 
 namespace UILogicLibrary {
-	public abstract class EditToolState {
-		public EditToolState(EditTool editTool) {
+	public abstract class AbstractState {
+		public AbstractState(EditTool editTool, IHolderState holder) {
 			this._editTool = editTool;
+            this._holder = holder;
 		}
 
 		public virtual void MouseLeftClick(Point location) { }
@@ -24,7 +25,7 @@ namespace UILogicLibrary {
 		public virtual void KeyPressed(Keyboard.Key key) { }
 		public virtual void Draw(DrawingContext context) { }
 
-		protected EditToolState CurrentState {
+		protected AbstractState CurrentState {
 			get {
 				return _editTool.State;
 			}
@@ -37,13 +38,20 @@ namespace UILogicLibrary {
 				return _editTool;
 			}
 		}
+        protected IHolderState Holder
+        {
+            get {
+                return _holder;
+            }
+        }
 
-		private Timer _timer;
+        private Timer _timer;
 		private EditTool _editTool;
+        private IHolderState _holder;
 	}
 
 
-	public class EmptyState : EditToolState {
-		public EmptyState(EditTool tool) : base(tool) { }
+	public class EmptyState : AbstractState {
+		public EmptyState(EditTool tool, IHolderState holder) : base(tool, holder) { }
 	}
 }

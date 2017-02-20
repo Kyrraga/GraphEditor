@@ -8,10 +8,10 @@ using GraphModelLibrary;
 
 namespace UILogicLibrary
 {
-	public class EditTool {
+	public class EditTool : IHolderState {
 
 		public EditTool(Mouse mouse, Keyboard keyboard) {
-			this._state = new EmptyState(this);
+			this._state = new EmptyState(this, this);
 			this._selectionManager = new Selection(this);
 
 			mouse.LeftClick += (p => MouseLeftClick(p));
@@ -32,14 +32,14 @@ namespace UILogicLibrary
 			set {
 				_graph = value;
 				if (_graph == null) {
-					State = new EmptyState(this);
+					State = new EmptyState(this, this);
 				}
 				else {
-					State = new DefaultState(this);
+					State = new DefaultState(this, this);
 				}
 			}
 		}
-		public EditToolState State {
+		public AbstractState State {
 			get {
 				return _state;
 			}
@@ -67,7 +67,7 @@ namespace UILogicLibrary
 		readonly Keyboard _keyboard;
 		readonly Selection _selectionManager;
 		GraphView _graph = null;
-		EditToolState _state;
+		AbstractState _state;
 
 		void MouseLeftClick(Point p) {
 			Object o = GraphView?.FindClicked(p);

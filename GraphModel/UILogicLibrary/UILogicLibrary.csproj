@@ -45,9 +45,10 @@
     <Compile Include="DrawEdgeState.cs" />
     <Compile Include="DrawingContext.cs" />
     <Compile Include="EditTool.cs" />
-    <Compile Include="EditToolState.cs" />
+    <Compile Include="AbstractState.cs" />
     <Compile Include="GraphView.cs" />
     <Compile Include="IEnumerableExtension.cs" />
+    <Compile Include="IHolderState.cs" />
     <Compile Include="Keyboard.cs" />
     <Compile Include="Mouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
